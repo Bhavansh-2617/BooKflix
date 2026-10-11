@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Bookflix - Search Any Book: Author, Summary, Genre &amp; Cover</title>
+<meta name="description" content="Bookflix lets you search any book in the world and instantly see its author, the author's birth and death dates, publish year, genres, summary and cover.">
+<meta name="keywords" content="Bookflix, book search, book summary, author biography, book genre, book cover">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bookflix - Search Any Book">
+<meta property="og:description" content="Author, birth and death dates, publish year, genre, summary and cover for any book.">
+<!-- Google Search Console: paste your verification tag here, for example:
+<meta name="google-site-verification" content="YOUR_CODE_HERE">
+-->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%93%9A%3C/text%3E%3C/svg%3E">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Segoe UI,Arial,sans-serif;background:#141414;color:#eee}
+header{display:flex;justify-content:space-between;align-items:center;padding:16px 28px;background:#000}
+.logo{color:#e50914;font-size:30px;font-weight:800;letter-spacing:1px}
+button{background:#e50914;color:#fff;border:0;padding:10px 18px;border-radius:4px;font-size:15px;cursor:pointer}
+button.ghost{background:#333}
+button:hover{opacity:.85}
+input[type=text],input[type=email],input[type=password],input[type=number]{width:100%;padding:12px;margin:8px 0;border-radius:4px;border:1px solid #444;background:#222;color:#fff;font-size:15px}
+.box{max-width:400px;margin:50px auto;background:#1f1f1f;padding:28px;border-radius:8px}
+.box h2{margin-top:0}
+.msg{color:#ff6b6b;min-height:20px;font-size:14px;margin-bottom:8px}
+.link{color:#e50914;cursor:pointer}
+.bot{background:#262626;border:1px solid #444;border-radius:6px;padding:12px;margin:10px 0}
+.bot label{display:flex;align-items:center;gap:8px;font-size:14px;cursor:pointer}
+.bot .q{margin:10px 0 0;font-size:14px}
+.hp{position:absolute;left:-9999px;height:0;overflow:hidden}
+.wrap{max-width:900px;margin:30px auto;padding:0 16px}
+.sbar{display:flex;gap:8px}
+.sbar input{margin:0}
+.card{display:flex;gap:24px;margin-top:24px;background:#1f1f1f;padding:20px;border-radius:8px;flex-wrap:wrap}
+.card img{width:200px;max-width:100%;border-radius:6px;background:#333;min-height:290px;object-fit:cover}
+.info{flex:1;min-width:240px}
+.info h1{margin:0 0 8px}
+.row{margin:8px 0;line-height:1.5}.row b{color:#e50914}
+.tag{display:inline-block;background:#333;padding:4px 10px;border-radius:12px;margin:3px 4px 0 0;font-size:13px}
+.chip{display:inline-block;background:#2a2a2a;padding:6px 12px;border-radius:14px;margin:4px 6px 0 0;font-size:13px;cursor:pointer}
+.hide{display:none!important}
+.info>*{opacity:0;animation:up .55s ease forwards}
+.info>*:nth-child(1){animation-delay:.05s}.info>*:nth-child(2){animation-delay:.2s}.info>*:nth-child(3){animation-delay:.35s}
+.info>*:nth-child(4){animation-delay:.5s}.info>*:nth-child(5){animation-delay:.65s}.info>*:nth-child(6){animation-delay:.8s}
+.info>*:nth-child(7){animation-delay:.95s}.info>*:nth-child(8){animation-delay:1.1s}
+.card{animation:pop .6s ease both}.card img{animation:imgin .9s ease both}
+@keyframes up{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+@keyframes imgin{from{opacity:0;transform:rotateY(70deg) scale(.8)}to{opacity:1;transform:none}}
+.caret{display:inline-block;width:2px;height:1em;background:#e50914;margin-left:2px;vertical-align:-2px;animation:blink .7s infinite}
+@keyframes blink{50%{opacity:0}}
+.spin{display:inline-block;width:14px;height:14px;border:2px solid #555;border-top-color:#e50914;border-radius:50%;animation:rot .7s linear infinite;vertical-align:-2px;margin-right:6px}
+@keyframes rot{to{transform:rotate(360deg)}}
+.toast{position:fixed;top:80px;right:20px;z-index:10;background:#e50914;color:#fff;padding:12px 18px;border-radius:8px;font-weight:700;animation:up .4s ease both}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:14px;margin:16px 0}
+.stat{background:#1f1f1f;border-radius:8px;padding:18px;animation:pop .5s ease both}
+.stat small{color:#aaa}.stat .n{font-size:28px;font-weight:800;margin-top:6px}
+.rankcard{background:linear-gradient(135deg,#3a0a0e,#1f1f1f);border-radius:8px;padding:20px;margin-top:10px;animation:pop .5s ease both}
+.rankcard .rn{font-size:26px;font-weight:800}
+.bar{height:12px;background:#333;border-radius:6px;overflow:hidden;margin:10px 0 4px}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,#e50914,#ff7a59);border-radius:6px;transition:width 1s ease}
+.panel{background:#1f1f1f;border-radius:8px;padding:18px;margin-top:14px}
+.panel h3{margin:0 0 10px}
+.lb{width:100%;border-collapse:collapse}
+.lb td,.lb th{padding:9px 8px;text-align:left;border-bottom:1px solid #333}
+.lb tr.me{background:rgba(229,9,20,.18)}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
+.src{font-size:12px;color:#888;margin-top:12px}
+header,.box,.wrap{position:relative;z-index:1}
+#bubbles{position:fixed;inset:0;overflow:hidden;z-index:0;pointer-events:none}
+.bub{position:absolute;bottom:-120px;border-radius:50%;
+  background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.35),rgba(229,9,20,.12) 60%,rgba(229,9,20,.03));
+  border:1px solid rgba(255,255,255,.18);animation:rise linear infinite}
+@keyframes rise{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}
+  50%{transform:translateY(-55vh) translateX(25px)}100%{transform:translateY(-120vh) translateX(-20px);opacity:0}}
+.clip{margin-top:20px;background:#1f1f1f;padding:20px;border-radius:8px}
+.clip h3{margin:0 0 10px}
+.clip video{width:100%;max-width:360px;border-radius:6px;background:#000;display:block;margin-bottom:10px}
+.clip a{color:#e50914;font-weight:600;text-decoration:none}
+.clip small{color:#aaa;display:block;margin:6px 0 10px}
+.trailer{position:relative;width:100%;max-width:360px;aspect-ratio:9/16;max-height:520px;border-radius:8px;overflow:hidden;margin-bottom:10px;
+  background:linear-gradient(160deg,#2b0408,#000 60%,#14213d);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:16px}
+.trailer img{width:48%;border-radius:6px;box-shadow:0 10px 30px rgba(229,9,20,.5);animation:tspin 10s ease-in-out infinite}
+.trailer div{opacity:0;margin-top:12px;font-weight:700}
+.trailer .t1{font-size:22px;animation:tin 10s infinite 1s}
+.trailer .t2{color:#ccc;font-weight:400;animation:tin 10s infinite 3s}
+.trailer .t3{color:#e50914;animation:tin 10s infinite 5s}
+.trailer .t4{font-size:18px;animation:tin 10s infinite 7s}
+@keyframes tspin{0%,100%{transform:perspective(500px) rotateY(-25deg) scale(.95)}50%{transform:perspective(500px) rotateY(25deg) scale(1.05)}}
+@keyframes tin{0%{opacity:0;transform:translateY(14px)}8%,28%{opacity:1;transform:none}36%,100%{opacity:0}}
+</style>
+</head>
+<body>
+<div id="bubbles"></div>
+<header><div class="logo">BOOKFLIX</div><div><button id="mbtn" class="ghost">&#128263; Music</button> <span id="nav"></span></div></header>
+
+<div id="auth" class="box">
+  <h2 id="atitle">Login</h2>
+  <input id="name" type="text" placeholder="Full name" class="hide">
+  <input id="email" type="email" placeholder="Email">
+  <input id="pass" type="password" placeholder="Password (min 6 characters)">
+  <div class="hp"><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
+  <div class="bot">
+    <label><input type="checkbox" id="human"> I'm not a robot</label>
+    <div class="q">Verify: what is <b id="cq"></b> ? <input id="ca" type="number" placeholder="Answer"></div>
+  </div>
+  <div class="msg" id="amsg"></div>
+  <button id="abtn" style="width:100%">Login</button>
+  <p id="aswitch"></p>
+  <small style="color:#888">Your account is saved only in this browser. Please do not reuse your real passwords.</small>
+</div>
+
+<div id="dash" class="wrap hide"></div>
+
+<div id="app" class="wrap hide">
+  <h2 id="hello"></h2>
+  <div class="sbar">
+    <input id="q" type="text" placeholder="Enter any book name... (e.g. Harry Potter, Hamlet)">
+    <button id="go">Search</button>
+  </div>
+  <div id="status" style="margin-top:14px"></div>
+  <div id="result"></div>
+</div>
+
+<script>
+const $ = id => document.getElementById(id);
+let mode = 'login', capAns = 0, capTime = 0;
+
+/* ---------- Bot verification ---------- */
+function newCaptcha(){
+  const a = 2 + Math.floor(Math.random()*9), b = 2 + Math.floor(Math.random()*9);
+  const ops = [['+', a+b], ['x', a*b], ['-', Math.abs(a-b)]];
+  const o = ops[Math.floor(Math.random()*3)];
+  const x = o[0]==='-' ? Math.max(a,b) : a, y = o[0]==='-' ? Math.min(a,b) : b;
+  $('cq').textContent = x + ' ' + o[0] + ' ' + y;
+  capAns = o[1]; capTime = Date.now();
+  $('ca').value = ''; $('human').checked = false;
+}
+function botOk(){
+  if($('website').value) return 'Bot detected.';
+  if(!$('human').checked) return 'Please tick "I\'m not a robot".';
+  if(parseInt($('ca').value,10) !== capAns) return 'Wrong verification answer. Try the new one.';
+  if(Date.now() - capTime < 1500) return 'Too fast. Please try again.';
+  return '';
+}
+
+/* ---------- Auth (localStorage, demo only) ---------- */
+async function hash(s){
+  if(window.crypto && crypto.subtle){
+    const b = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+    return [...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('');
+  }
+  return btoa(unescape(encodeURIComponent(s)));
+}
+const getUsers = () => JSON.parse(localStorage.getItem('bf_users') || '{}');
+const setUsers = u => localStorage.setItem('bf_users', JSON.stringify(u));
+
+function setMode(m, keepMsg){
+  mode = m;
+  $('atitle').textContent = m==='login' ? 'Login' : 'Register';
+  $('abtn').textContent = m==='login' ? 'Login' : 'Register';
+  $('name').classList.toggle('hide', m==='login');
+  if(!keepMsg) $('amsg').textContent = '';
+  $('aswitch').innerHTML = m==='login'
+    ? 'New to Bookflix? <span class="link" onclick="setMode(\'register\')">Register</span>'
+    : 'Already have an account? <span class="link" onclick="setMode(\'login\')">Login</span>';
+  newCaptcha();
+}
+
+$('abtn').onclick = async () => {
+  const msg = $('amsg'); msg.style.color = '';
+  const email = $('email').value.trim().toLowerCase();
+  const pass = $('pass').value, name = $('name').value.trim();
+  const users = getUsers();
+  if(!/^\S+@\S+\.\S+$/.test(email)) return msg.textContent = 'Enter a valid email.';
+  if(pass.length < 6) return msg.textContent = 'Password must be at least 6 characters.';
+  const bad = botOk();
+  if(bad){ msg.textContent = bad; newCaptcha(); return; }
+  const h = await hash(pass);
+  if(mode === 'register'){
+    if(!name) return msg.textContent = 'Enter your name.';
+    if(users[email]){ newCaptcha(); return msg.textContent = 'This email is already registered.'; }
+    users[email] = {name, h}; setUsers(users);
+    setMode('login', true);
+    msg.style.color = '#4caf50';
+    msg.textContent = 'Registration successful! Please login.';
+  } else {
+    if(!users[email] || users[email].h !== h){ newCaptcha(); return msg.textContent = 'Incorrect email or password.'; }
+    localStorage.setItem('bf_session', email);
+    showApp();
+  }
+};
+
+/* ---------- Stats, points & ranks ---------- */
+const RANKS = [
+  {name:'Newbie Reader', icon:'&#128214;', min:0},
+  {name:'Bookworm', icon:'&#128027;', min:50},
+  {name:'Page Turner', icon:'&#128220;', min:150},
+  {name:'Scholar', icon:'&#127891;', min:400},
+  {name:'Bookflix Legend', icon:'&#128081;', min:800}
+];
+const blank = () => ({secs:0, searches:0, books:{}, recent:[]});
+const getStats = () => JSON.parse(localStorage.getItem('bf_stats') || '{}');
+const me = () => localStorage.getItem('bf_session');
+const curStats = () => getStats()[me()] || blank();
+const pts = st => st.searches * 10 + Math.floor(st.secs / 60) * 2;
+const rankOf = p => RANKS.filter(r => p >= r.min).pop();
+function upd(fn){
+  const e = me(); if(!e) return;
+  const all = getStats(); const st = all[e] || (all[e] = blank());
+  fn(st); localStorage.setItem('bf_stats', JSON.stringify(all));
+}
+function fmtTime(sec){
+  const h = Math.floor(sec/3600), m = Math.floor(sec%3600/60), s = sec%60;
+  return (h ? h + 'h ' : '') + (h || m ? m + 'm ' : '') + s + 's';
+}
+function toast(msg){
+  const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = msg;
+  document.body.appendChild(t); setTimeout(() => t.remove(), 3500);
+}
+/* watch time = time spent on Bookflix while the tab is visible */
+setInterval(() => {
+  if(me() && document.visibilityState === 'visible'){
+    upd(st => { st.secs++; });
+    if(!$('dash').classList.contains('hide') && $('dWatch')){
+      const st = curStats(); $('dWatch').textContent = fmtTime(st.secs); $('dPts').textContent = pts(st);
+    }
+  }
+}, 1000);
+
+function renderDash(){
+  const email = me(), u = getUsers()[email], st = curStats();
+  const p = pts(st), r = rankOf(p), nx = RANKS[RANKS.indexOf(r) + 1];
+  const pct = nx ? Math.round((p - r.min) / (nx.min - r.min) * 100) : 100;
+  const all = getStats();
+  const board = Object.entries(getUsers()).map(([em, uu]) => ({em, name:uu.name, p:pts(all[em] || blank())})).sort((a,b) => b.p - a.p);
+  const medal = ['&#129351;','&#129352;','&#129353;'];
+  const top = Object.entries(st.books).sort((a,b) => b[1] - a[1]).slice(0,5);
+  $('dash').innerHTML = `
+    <h2>${esc(u.name)}'s Dashboard</h2>
+    <div class="rankcard">
+      <div class="rn">${r.icon} ${r.name}</div>
+      <div class="bar"><i id="dbar" style="width:0"></i></div>
+      <small>${nx ? (nx.min - p) + ' more points to reach ' + nx.icon + ' ' + nx.name : 'You reached the top rank!'}</small>
+    </div>
+    <div class="stats">
+      <div class="stat"><small>Watch time on Bookflix</small><div class="n" id="dWatch">${fmtTime(st.secs)}</div></div>
+      <div class="stat"><small>Total searches</small><div class="n">${st.searches}</div></div>
+      <div class="stat"><small>Points</small><div class="n" id="dPts">${p}</div></div>
+      <div class="stat"><small>Your position</small><div class="n">#${board.findIndex(b => b.em === email) + 1} of ${board.length}</div></div>
+    </div>
+    <div class="two">
+      <div class="panel"><h3>&#128269; Recent searches</h3>${st.recent.length ? st.recent.map(x => `<span class="chip" onclick="searchFor(this.dataset.q)" data-q="${esc(x)}">${esc(x)}</span>`).join('') : 'No searches yet.'}</div>
+      <div class="panel"><h3>&#128215; Most viewed books</h3>${top.length ? top.map(b => `<div class="row">${esc(b[0])} <span class="tag">${b[1]}x</span></div>`).join('') : 'Nothing yet.'}</div>
+    </div>
+    <div class="panel"><h3>&#127942; Leaderboard</h3>
+      <table class="lb"><tr><th>Rank</th><th>Reader</th><th>Level</th><th>Points</th></tr>
+      ${board.map((b,k) => `<tr class="${b.em === email ? 'me' : ''}"><td>${medal[k] || '#' + (k+1)}</td><td>${esc(b.name)}${b.em === email ? ' (you)' : ''}</td><td>${rankOf(b.p).icon} ${rankOf(b.p).name}</td><td>${b.p}</td></tr>`).join('')}</table>
+      <small style="color:#888">Points: 10 per search + 2 per minute on Bookflix. Leaderboard shows accounts on this device.</small>
+    </div>`;
+  setTimeout(() => { const b = $('dbar'); if(b) b.style.width = pct + '%'; }, 80);
+}
+function view(v){
+  $('app').classList.toggle('hide', v !== 'app');
+  $('dash').classList.toggle('hide', v !== 'dash');
+  if(v === 'dash') renderDash();
+}
+function searchFor(q){ view('app'); $('q').value = q; search(); }
+
+function showApp(){
+  const u = getUsers()[me()];
+  if(!u) return logout();
+  $('auth').classList.add('hide');
+  $('hello').textContent = 'Welcome, ' + u.name + '!';
+  $('nav').innerHTML = '<button class="ghost" onclick="view(\'app\')">Search</button> <button class="ghost" onclick="view(\'dash\')">Dashboard</button> <button class="ghost" onclick="logout()">Logout</button>';
+  view('app');
+}
+function logout(){
+  localStorage.removeItem('bf_session');
+  $('app').classList.add('hide'); $('dash').classList.add('hide'); $('auth').classList.remove('hide');
+  $('nav').innerHTML = ''; setMode('login');
+}
+
+/* ---------- Data helpers ---------- */
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+async function J(url){
+  let t;
+  const timeout = new Promise((_, rej) => { t = setTimeout(() => rej(new Error('Timed out')), 12000); });
+  try{
+    const r = await Promise.race([fetch(url), timeout]);
+    if(!r.ok) throw new Error('HTTP ' + r.status);
+    return await Promise.race([r.json(), timeout]);
+  } finally { clearTimeout(t); }
+}
+const textOf = d => !d ? '' : (typeof d === 'string' ? d : d.value || '');
+const clean = s => String(s||'').replace(/<[^>]+>/g,'').replace(/\(\[?[^)]*\]\(https?:[^)]*\)\)?/g,'').replace(/\[([^\]]+)\]\([^)]*\)/g,'$1').trim();
+
+/* Wikipedia fallback for author birth/death years */
+async function wikiDates(name){
+  try{
+    const d = await J('https://en.wikipedia.org/api/rest_v1/page/summary/' + encodeURIComponent(name.replace(/ /g,'_')));
+    const m = (d.description || '').match(/(\d{3,4})\s*[–-]\s*(\d{3,4})?/);
+    if(m) return {birth: m[1], death: m[2] || ''};
+  }catch(e){}
+  return null;
+}
+
+let typeTok = 0;
+function typeText(el, text){
+  const tok = ++typeTok; let n = 0; const step = Math.max(1, Math.ceil(text.length / 200));
+  setTimeout(() => {
+    const t = setInterval(() => {
+      if(tok !== typeTok || !el.isConnected){ clearInterval(t); return; }
+      n += step; el.textContent = text.slice(0, n);
+      if(n >= text.length){ clearInterval(t); if(el.nextElementSibling) el.nextElementSibling.remove(); }
+    }, 20);
+  }, 1000);
+}
+
+/* ---------- Search: Open Library first, Google Books as backup ---------- */
+async function searchOL(q){
+  const d = await J('https://openlibrary.org/search.json?limit=6&fields=key,title,author_name,author_key,first_publish_year,cover_i&q=' + encodeURIComponent(q));
+  return d.docs.map(x => ({src:'ol', key:x.key, title:x.title, authors:x.author_name||[], authorKey:(x.author_key||[])[0],
+    year:x.first_publish_year, cover:x.cover_i ? `https://covers.openlibrary.org/b/id/${x.cover_i}-L.jpg` : ''}));
+}
+async function searchGB(q){
+  const d = await J('https://www.googleapis.com/books/v1/volumes?maxResults=6&q=' + encodeURIComponent(q));
+  return (d.items||[]).map(x => { const v = x.volumeInfo||{};
+    return {src:'gb', title:v.title, authors:v.authors||[], year:(v.publishedDate||'').slice(0,4),
+      cover:((v.imageLinks||{}).thumbnail||'').replace('http:','https:').replace('zoom=1','zoom=2'),
+      genres:v.categories||[], summary:v.description||''}; });
+}
+
+async function search(){
+  const q = $('q').value.trim(); if(!q) return;
+  const before = rankOf(pts(curStats()));
+  upd(st => { st.searches++; st.recent = [q, ...st.recent.filter(x => x !== q)].slice(0, 8); });
+  const after = rankOf(pts(curStats()));
+  if(after !== before) toast('&#127881; Rank up! You are now ' + after.icon + ' ' + after.name);
+  $('status').innerHTML = '<span class="spin"></span>Searching...'; $('result').innerHTML = '';
+  let docs = [], err = '';
+  try{ docs = await searchOL(q); }catch(e){ err = 'Open Library: ' + e.message; }
+  if(!docs.length){
+    try{ docs = await searchGB(q); }catch(e){ err += ' | Google Books: ' + e.message; }
+  }
+  if(!docs.length){
+    $('status').innerHTML = err
+      ? 'Could not load data (' + esc(err) + '). Check your internet and open this file in Chrome/Edge by double-clicking it (not inside a preview window).'
+      : 'No book found. Check the spelling.';
+    return;
+  }
+  window._docs = docs;
+  $('status').innerHTML = docs.length > 1 ? 'More matches: ' + docs.slice(1).map((d,i)=>
+    `<span class="chip" onclick="pick(${i+1})">${esc(d.title)} - ${esc(d.authors[0]||'')}</span>`).join('') : '';
+  pick(0);
+}
+
+async function pick(i){
+  const d = window._docs[i];
+  upd(st => { st.books[d.title] = (st.books[d.title] || 0) + 1; });
+  $('result').innerHTML = '<p>Loading details...</p>';
+  let summary = d.summary || '', genres = d.genres || [], birth = '', death = '';
+
+  if(d.src === 'ol'){
+    try{
+      const w = await J('https://openlibrary.org' + d.key + '.json');
+      summary = textOf(w.description);
+      genres = (w.subjects||[]).filter(s => s.length < 30).slice(0,8);
+    }catch(e){}
+    try{
+      if(d.authorKey){ const a = await J('https://openlibrary.org/authors/' + d.authorKey + '.json');
+        birth = a.birth_date || ''; death = a.death_date || ''; }
+    }catch(e){}
+  }
+  if(!birth && d.authors[0]){ const w = await wikiDates(d.authors[0]); if(w){ birth = w.birth; death = w.death; } }
+  const slug = String(d.title).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
+  summary = clean(summary).split('\n\n')[0] || 'Summary not available for this book.';
+
+  $('result').innerHTML = `
+  <div class="card">
+    <img src="${esc(d.cover)}" alt="Book cover" onerror="this.alt='Cover not available'">
+    <div class="info">
+      <h1>${esc(d.title)}</h1>
+      <div class="row"><b>Author:</b> ${esc(d.authors.join(', ') || 'Unknown')}</div>
+      <div class="row"><b>Author born:</b> ${esc(birth || 'Not available')}</div>
+      <div class="row"><b>Author died:</b> ${esc(death || (birth ? 'Not available / possibly still alive' : 'Not available'))}</div>
+      <div class="row"><b>First published:</b> ${esc(d.year || 'Not available')}</div>
+      <div class="row"><b>Genre / Themes:</b><br>${genres.length ? genres.map(s=>`<span class="tag">${esc(s)}</span>`).join('') : 'Not available'}</div>
+      <div class="row"><b>Summary:</b><br><span id="sumtxt"></span><span class="caret"></span></div>
+      <div class="src">Data source: ${d.src==='ol' ? 'Open Library (+ Wikipedia)' : 'Google Books (+ Wikipedia)'}</div>
+    </div>
+  </div>
+  <div class="clip">
+    <h3>&#127916; Book Clip</h3>
+    <video id="clipv" controls playsinline preload="metadata" src="clips/${slug}.mp4"></video>
+    <div id="trailer" class="trailer hide">
+      <img src="${esc(d.cover)}" alt="" onerror="this.style.display='none'">
+      <div class="t1">${esc(d.title)}</div>
+      <div class="t2">by ${esc(d.authors[0] || 'Unknown')}</div>
+      <div class="t3">First published ${esc(d.year || '')}</div>
+      <div class="t4">Read it on BOOKFLIX</div>
+    </div>
+    <small id="clipmsg" class="hide">Showing the auto trailer. To use your own video, save a 10-sec clip named <b>clips/${slug}.mp4</b> next to this file.</small>
+    <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.title + ' book review')}">&#9654; Watch book review videos on YouTube</a>
+  </div>`;
+  $('clipv').onerror = () => { $('clipv').classList.add('hide'); $('trailer').classList.remove('hide'); $('clipmsg').classList.remove('hide'); };
+  typeText($('sumtxt'), summary);
+}
+
+$('go').onclick = search;
+$('q').addEventListener('keydown', e => { if(e.key==='Enter') search(); });
+
+/* ---------- Bubbles ---------- */
+(function(){
+  const b = $('bubbles');
+  for(let i=0;i<28;i++){
+    const e = document.createElement('div'), sz = 14 + Math.random()*60;
+    e.className = 'bub';
+    e.style.cssText = `width:${sz}px;height:${sz}px;left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:${-Math.random()*18}s`;
+    b.appendChild(e);
+  }
+})();
+
+/* ---------- Music: optional music.mp3 (copyright-free), otherwise built-in original lo-fi loop ---------- */
+const SONGS = ['music.mp3'];
+const music = {on:false, audio:null, idx:0, ctx:null, master:null, timer:null, n:0};
+const CHORDS = [[220,261.6,329.6,392],[174.6,220,261.6,329.6],[196,261.6,329.6,392],[196,246.9,293.7,392]];
+const ROOTS = [110,87.3,98,98];
+const PENTA = [440,523.3,587.3,659.3,784,880];
+function tone(f, dur, vol, type, att){
+  const c = music.ctx, o = c.createOscillator(), g = c.createGain();
+  o.type = type; o.frequency.value = f;
+  g.gain.setValueAtTime(.0001, c.currentTime);
+  g.gain.linearRampToValueAtTime(vol, c.currentTime + att);
+  g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + dur);
+  o.connect(g); g.connect(music.master); o.start(); o.stop(c.currentTime + dur + .05);
+}
+function softKick(){
+  const c = music.ctx, o = c.createOscillator(), g = c.createGain();
+  o.frequency.setValueAtTime(120, c.currentTime); o.frequency.exponentialRampToValueAtTime(45, c.currentTime + .15);
+  g.gain.setValueAtTime(.22, c.currentTime); g.gain.exponentialRampToValueAtTime(.0001, c.currentTime + .3);
+  o.connect(g); g.connect(music.master); o.start(); o.stop(c.currentTime + .32);
+}
+function synthStart(){
+  if(!music.ctx){
+    music.ctx = new (window.AudioContext || window.webkitAudioContext)();
+    const lp = music.ctx.createBiquadFilter(); lp.type = 'lowpass'; lp.frequency.value = 1800;
+    music.master = music.ctx.createGain(); music.master.gain.value = .9;
+    music.master.connect(lp); lp.connect(music.ctx.destination);
+  }
+  music.ctx.resume();
+  clearInterval(music.timer);
+  music.timer = setInterval(() => {
+    const st = music.n % 8, bar = Math.floor(music.n / 8) % 4;
+    if(st === 0) CHORDS[bar].forEach(f => tone(f, 3.6, .035, 'triangle', .35));
+    if(st === 0 || st === 4){ tone(ROOTS[bar], 1.3, .09, 'sine', .03); softKick(); }
+    if(Math.random() > .45) tone(PENTA[Math.floor(Math.random() * PENTA.length)], 1.5, .04, 'sine', .04);
+    music.n++;
+  }, 400);
+}
+function playSong(){
+  const a = new Audio(SONGS[music.idx]); a.loop = true; a.volume = .5; music.audio = a;
+  a.addEventListener('error', () => {
+    if(!music.on) return;
+    music.idx++;
+    if(music.idx < SONGS.length) return playSong();
+    synthStart();
+  }, {once:true});
+  a.play().catch(err => {
+    if(err && err.name === 'NotAllowedError'){ music.on = false; $('mbtn').innerHTML = '&#128263; Music'; }
+  });
+}
+function startMusic(){
+  if(music.on) return;
+  music.on = true; music.idx = 0; $('mbtn').innerHTML = '&#128266; Music';
+  playSong();
+}
+function stopMusic(){
+  music.on = false; $('mbtn').innerHTML = '&#128263; Music';
+  if(music.audio) music.audio.pause();
+  clearInterval(music.timer);
+  if(music.ctx) music.ctx.suspend();
+}
+$('mbtn').onclick = () => {
+  GESTURES.forEach(g => document.removeEventListener(g, onFirstGesture, true));
+  music.on ? stopMusic() : startMusic();
+};
+/* Try to autoplay right away; browsers may block it until the first click, key press or tap */
+const GESTURES = ['pointerdown','keydown','touchstart'];
+function onFirstGesture(e){
+  if(e.target && e.target.closest && e.target.closest('#mbtn')) return;
+  GESTURES.forEach(g => document.removeEventListener(g, onFirstGesture, true));
+  if(music.ctx) music.ctx.resume();
+  startMusic();
+}
+GESTURES.forEach(g => document.addEventListener(g, onFirstGesture, true));
+startMusic();
+
+setMode('login');
+if(localStorage.getItem('bf_session')) showApp();
+</script>
+</body>
+</html>
