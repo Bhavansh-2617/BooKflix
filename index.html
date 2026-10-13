@@ -91,17 +91,142 @@ header,.box,.wrap{position:relative;z-index:1}
 .trailer .t4{font-size:18px;animation:tin 10s infinite 7s}
 @keyframes tspin{0%,100%{transform:perspective(500px) rotateY(-25deg) scale(.95)}50%{transform:perspective(500px) rotateY(25deg) scale(1.05)}}
 @keyframes tin{0%{opacity:0;transform:translateY(14px)}8%,28%{opacity:1;transform:none}36%,100%{opacity:0}}
+
+textarea,select{width:100%;padding:12px;margin:8px 0;border-radius:4px;border:1px solid #444;background:#222;color:#fff;font-size:15px;font-family:inherit}
+body{padding-bottom:36px}
+header{position:sticky;top:0;z-index:6}
+header>div:last-child{display:flex;align-items:center;gap:10px}
+.mob{display:none}
+.pill{display:inline-flex;align-items:center;gap:8px;background:#222;padding:4px 14px 4px 4px;border-radius:22px}
+.ava{width:34px;height:34px;border-radius:50%;background:#333;display:inline-flex;align-items:center;justify-content:center;font-size:20px;flex:none}
+.ava.big{width:42px;height:42px;font-size:24px}
+#side{position:fixed;top:64px;bottom:34px;left:0;width:220px;background:#0c0c0c;border-right:1px solid #222;z-index:5;display:flex;flex-direction:column;justify-content:space-between;padding:16px 12px;overflow:auto}
+#side a{display:block;padding:12px 14px;border-radius:6px;color:#ddd;cursor:pointer;margin-bottom:4px}
+#side a:hover{background:#1f1f1f}#side a.act{background:#e50914;color:#fff}
+.sfoot{border-top:1px solid #222;padding-top:12px}
+#suser{display:flex;align-items:center;gap:10px;margin-bottom:10px;font-size:14px;overflow:hidden}
+#suser small{color:#888;word-break:break-all}
+#slogout{width:100%}
+body.in .wrap{margin:30px 20px 60px 240px;max-width:none}
+#avs{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.av{width:40px;height:40px;border-radius:50%;background:#333;display:flex;align-items:center;justify-content:center;font-size:22px;cursor:pointer;border:2px solid transparent}
+.av.sel{border-color:#e50914;background:#3a0a0e}
+#foot{position:fixed;left:0;right:0;bottom:0;height:34px;background:#000;border-top:1px solid #e50914;z-index:8;overflow:hidden;display:flex;align-items:center}
+#foot span{display:inline-block;white-space:nowrap;color:#e50914;font-weight:700;letter-spacing:1px;animation:mq 40s linear infinite}
+@keyframes mq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.info>*:nth-child(9){animation-delay:1.25s}
+.acts{margin-top:14px;display:flex;gap:10px;flex-wrap:wrap}
+.heart{background:#2a2a2a}.heart.on{background:#e50914}
+.plbox{margin-top:10px;display:flex;gap:8px}.plbox input{margin:0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px}
+.bk{cursor:pointer;font-size:13px}.bk img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px;background:#333;display:block;margin-bottom:6px}
+.bk small{color:#aaa;display:block}
+.pl{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #333;align-items:flex-start}
+.pl img{width:52px;border-radius:4px;background:#333;cursor:pointer}
+.pl .cm{color:#ccc;font-style:italic;margin-top:4px}
+.rm{background:#333;padding:4px 10px;font-size:12px;margin-top:6px}
+@media(max-width:800px){
+  #side{transform:translateX(-100%);transition:transform .25s}#side.open{transform:none}
+  body.in .wrap{margin:20px 12px 60px}body.in .mob{display:inline-block}.pn{display:none}.pill{padding:4px}
+}
+
+#intro{position:fixed;inset:0;background:#000;z-index:50;display:flex;align-items:center;justify-content:center;overflow:hidden}
+#intro.out{opacity:0;transition:opacity .6s}
+#introB{position:absolute;font-size:40vmin;font-weight:900;color:#e50914;line-height:1;text-shadow:0 0 60px rgba(229,9,20,.7);animation:bigB 2s ease-in forwards}
+@keyframes bigB{0%{transform:scale(.2) rotateY(90deg);opacity:0}25%{transform:scale(1) rotateY(0);opacity:1}60%{transform:scale(1.08);opacity:1}100%{transform:scale(8);opacity:0}}
+#introWord{display:flex;gap:.02em;font-size:clamp(34px,10vw,120px);font-weight:900;color:#e50914;letter-spacing:.03em}
+#introWord .l{display:inline-block;opacity:0;text-shadow:0 0 24px rgba(229,9,20,.55);
+  animation:bIn .9s cubic-bezier(.28,.84,.42,1) forwards,idleB 1.3s ease-in-out infinite;animation-delay:var(--d),calc(var(--d) + 1s)}
+@keyframes bIn{0%{opacity:0;transform:translateY(-70vh)}55%{opacity:1;transform:translateY(40px)}72%{transform:translateY(-22px)}86%{transform:translateY(10px)}100%{opacity:1;transform:none}}
+@keyframes idleB{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+#authBg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:20;display:flex;align-items:center;justify-content:center;padding:12px}
+#authBg .box{margin:0;width:100%;max-height:92vh;overflow:auto;position:relative}
+.x{position:absolute;top:10px;right:14px;cursor:pointer;font-size:20px;color:#aaa}
+#land{max-width:1100px;margin:20px auto 40px;padding:0 16px;text-align:center;position:relative;z-index:1}
+.hero{animation:up .8s ease both}
+.hero h1{font-size:clamp(26px,5vw,44px);margin:14px 0 6px}
+.hero p{color:#bbb;margin:0 0 22px}
+.poster{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:18px}
+.pc{opacity:0;animation:pcIn .6s ease forwards;animation-delay:calc(.4s + var(--i) * .1s)}
+@keyframes pcIn{from{opacity:0;transform:translateY(40px) scale(.85)}to{opacity:1;transform:none}}
+.pcv{aspect-ratio:2/3;border-radius:6px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;text-align:center;padding:8px;font-size:13px;font-weight:700;transition:transform .25s;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.pcv.has span{display:none}
+.pc:hover .pcv{transform:scale(1.06)}
+.pt{font-size:13px;margin-top:8px;font-weight:600}.pa{font-size:12px;color:#aaa}
+.navbtns{animation:up .6s ease 2.4s both}
+.credit{margin:36px 0 10px;font-size:20px;color:#ccc;opacity:0;animation:credIn 1.3s ease 3s forwards}
+.credit b{color:#e50914;text-shadow:0 0 14px rgba(229,9,20,.6)}
+@keyframes credIn{from{opacity:0;transform:translateY(16px);letter-spacing:.3em}to{opacity:1;transform:none;letter-spacing:normal}}
+
+.ladder{margin-top:8px}
+#okAnim{display:none;text-align:center;position:relative;overflow:hidden;padding:24px 0 10px}
+#auth.done>*:not(#okAnim){display:none!important}
+#auth.done #okAnim{display:block}
+.okav{font-size:54px;animation:avb 1s ease-in-out infinite}
+@keyframes avb{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.chk{width:90px;height:90px;display:block;margin:4px auto}
+.cc{fill:none;stroke:#4caf50;stroke-width:3;stroke-dasharray:151;stroke-dashoffset:151;animation:draw .7s ease forwards}
+.cp{fill:none;stroke:#4caf50;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .5s ease .6s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+#okAnim h2{margin:8px 0 4px;animation:up .6s ease 1s both}
+#okAnim p{margin:0;animation:up .6s ease 1.2s both}
+#okAnim small{color:#888;display:block;margin-top:12px}
+.cf{position:absolute;top:-14px;width:8px;height:14px;opacity:.95;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(460px) rotate(540deg);opacity:0}}
+.shelfh{margin:36px 0 12px;text-align:left}
+#shelf .pc{cursor:pointer}
+#ytbox{position:fixed;right:12px;bottom:44px;z-index:9;width:max(200px,min(356px,60vw));background:#000;border:1px solid #e50914;border-radius:8px;overflow:hidden}
+.ytbar{display:flex;justify-content:space-between;gap:8px;padding:5px 9px;font-size:12px;background:#111;color:#ddd}
+.ytbar b{cursor:pointer}
+#ytslot{height:200px}
+#ytslot iframe{border:0;width:100%;height:100%;display:block}
+#reader{position:fixed;top:0;left:0;right:0;bottom:34px;z-index:30;background:#0c0c0c;display:flex;flex-direction:column}
+.rbar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;background:#000;border-bottom:1px solid #e50914}
+.rbar a{color:#e50914;margin-right:12px;white-space:nowrap}
+#rframe{flex:1;border:0;width:100%;background:#fff}
+#ytbox{right:auto;left:12px;bottom:44px;width:200px;border-radius:6px}
+#ytslot{height:113px}
+.ytbar{font-size:11px;padding:3px 8px}
+.sfoot{min-height:108px}
+body.in #ytbox{left:10px;bottom:152px}
+@media(max-width:800px){#ytbox,body.in #ytbox{left:auto;right:10px;bottom:44px}}
+.rv{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #333;align-items:flex-start;text-align:left}
+.rv small{color:#888;margin-left:6px}
+#avroll{position:relative;height:96px;overflow:hidden;border-radius:10px;background:#111;border:1px solid #333;margin:8px 0}
+#avstrip{position:absolute;top:12px;left:0;display:flex;gap:12px;will-change:transform}
+.avc{width:72px;height:72px;flex:none;border-radius:12px;background:#2a2a2a;display:flex;align-items:center;justify-content:center;font-size:40px}
+#avmark{position:absolute;left:50%;top:6px;bottom:6px;width:84px;margin-left:-42px;border:2px solid #e50914;border-radius:14px;box-shadow:0 0 14px rgba(229,9,20,.7);z-index:2;pointer-events:none}
+#avmark.flash{animation:avflash .9s ease}
+@keyframes avflash{0%,100%{box-shadow:0 0 14px rgba(229,9,20,.7)}50%{box-shadow:0 0 44px rgba(255,210,74,1)}}
+.avc.pick{animation:avpop .8s ease forwards;background:#3a0a0e;box-shadow:0 0 22px rgba(229,9,20,.9)}
+@keyframes avpop{0%{transform:scale(1)}40%{transform:scale(1.4) rotate(-7deg)}70%{transform:scale(1.2) rotate(5deg)}100%{transform:scale(1.25)}}
+.sp{position:absolute;left:50%;top:50%;width:8px;height:8px;border-radius:50%;background:#ffd24a;box-shadow:0 0 8px #ffd24a;animation:spark .9s ease-out forwards;pointer-events:none;z-index:3}
+@keyframes spark{from{transform:translate(-50%,-50%);opacity:1}to{transform:translate(calc(-50% + var(--dx)),calc(-50% + var(--dy)));opacity:0}}
+#avname{text-align:center;min-height:26px;margin:4px 0 8px;font-size:15px}
+#avname.pop{animation:up .5s ease}
+#infoBg{position:fixed;inset:0;background:rgba(0,0,0,.78);z-index:22;display:flex;align-items:center;justify-content:center;padding:12px}
+#infoBg .box{margin:0;width:100%;max-width:580px;max-height:88vh;overflow:auto;position:relative;text-align:left}
+#infoBody h2{margin-top:0}#infoBody h3{margin:18px 0 6px;color:#e50914}#infoBody p,#infoBody li{color:#ccc;line-height:1.55;font-size:14px}
+.buy{margin-top:14px;display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:14px;color:#ccc}
+.bbtn{padding:8px 14px;border-radius:4px;color:#fff;text-decoration:none;font-weight:600;font-size:14px}
+.amz{background:#ff9900;color:#111}.fk{background:#2874f0}
+.aff{font-size:11px;color:#888;margin-top:6px;width:100%}
+.lnk{margin:8px 0 24px;color:#888;font-size:13px}.lnk span{cursor:pointer;text-decoration:underline}.lnk button{margin-left:12px;padding:6px 12px;font-size:13px}
 </style>
 </head>
 <body>
 <div id="bubbles"></div>
-<header><div class="logo">BOOKFLIX</div><div><button id="mbtn" class="ghost">&#128263; Music</button> <span id="nav"></span></div></header>
+<header><div style="display:flex;align-items:center;gap:12px"><button id="menuBtn" class="ghost mob" onclick="$('side').classList.toggle('open')">&#9776;</button><div class="logo">BOOKFLIX</div></div><div><button id="mbtn" class="ghost">&#128263; Music</button> <span id="nav"></span></div></header>
 
+<div id="authBg" class="hide" onclick="if(event.target===this)closeAuth()">
 <div id="auth" class="box">
+  <div class="x" onclick="closeAuth()">&#10005;</div>
+  <div id="okAnim"></div>
   <h2 id="atitle">Login</h2>
   <input id="name" type="text" placeholder="Full name" class="hide">
   <input id="email" type="email" placeholder="Email">
   <input id="pass" type="password" placeholder="Password (min 6 characters)">
+  <div id="avwrap" class="hide"><small>Pick your hero avatar: press STOP and the hero in the red box is yours</small><div id="avroll"><div id="avmark"></div><div id="avstrip"></div></div><div id="avname"></div><button type="button" id="avbtn" class="ghost" style="width:100%">STOP</button></div>
   <div class="hp"><input id="website" type="text" tabindex="-1" autocomplete="off"></div>
   <div class="bot">
     <label><input type="checkbox" id="human"> I'm not a robot</label>
@@ -110,10 +235,33 @@ header,.box,.wrap{position:relative;z-index:1}
   <div class="msg" id="amsg"></div>
   <button id="abtn" style="width:100%">Login</button>
   <p id="aswitch"></p>
-  <small style="color:#888">Your account is saved only in this browser. Please do not reuse your real passwords.</small>
+  <small id="acctNote" style="color:#888">Your account is saved only in this browser. Please do not reuse your real passwords.</small>
+  <div style="margin-top:8px"><small style="color:#888">By registering you agree to the <span class="link" onclick="openLegal()">Privacy Policy &amp; Terms</span>.</small></div>
+</div>
 </div>
 
+<div id="land" class="hide">
+  <div class="hero"><h1>Unlimited books. One search.</h1><p>Find any book's author, birth &amp; death dates, publish year, genre, summary and cover.</p></div>
+  <div class="poster" id="poster"></div>
+  <div class="credit">Made by Developer <b>Bhavansh Gaur</b></div>
+  <div class="lnk" style="margin-bottom:0">As an Amazon Associate I earn from qualifying purchases.</div>
+  <div class="lnk"><span onclick="openLegal()">Privacy Policy &amp; Terms</span> <button class="supp ghost" onclick="openSupport()">&#128155; Support Bookflix</button></div>
+</div>
+
+<aside id="side" class="hide">
+  <nav>
+    <a data-v="dash" onclick="view('dash')">&#128202; Dashboard</a>
+    <a data-v="app" onclick="view('app')">&#128269; Search</a>
+    <a data-v="lib" onclick="view('lib')">&#128218; Library</a>
+    <a data-v="contact" onclick="view('contact')">&#9993;&#65039; Chat with Developer</a>
+    <a class="supp" onclick="openSupport()">&#128155; Support Bookflix</a>
+    <a onclick="openLegal()">&#128274; Privacy &amp; Terms</a>
+  </nav>
+  <div class="sfoot"><div id="suser"></div><button id="slogout" class="ghost" onclick="logout()">&#8999; Logout</button></div>
+</aside>
 <div id="dash" class="wrap hide"></div>
+<div id="lib" class="wrap hide"></div>
+<div id="contact" class="wrap hide"></div>
 
 <div id="app" class="wrap hide">
   <h2 id="hello"></h2>
@@ -123,10 +271,140 @@ header,.box,.wrap{position:relative;z-index:1}
   </div>
   <div id="status" style="margin-top:14px"></div>
   <div id="result"></div>
+  <h3 class="shelfh">&#128218; Popular books - tap a cover to search it</h3>
+  <div class="poster" id="shelf"></div>
 </div>
 
+<div id="intro" class="hide"><div id="introB">B</div><div id="introWord"></div></div>
+<div id="infoBg" class="hide" onclick="if(event.target===this)closeInfo()"><div class="box"><div class="x" onclick="closeInfo()">&#10005;</div><div id="infoBody"></div></div></div>
+<div id="reader" class="hide"><div class="rbar"><b id="rtitle"></b><span><a id="rlink" target="_blank" rel="noopener">Open in new tab</a><button class="ghost" onclick="closeReader()">&#10005; Close</button></span></div><iframe id="rframe" allowfullscreen></iframe></div>
+<div id="ytbox" class="hide"><div class="ytbar"><span>&#127925; Now playing</span><b onclick="stopMusic()" title="Stop music">&#10005;</b></div><div id="ytslot"></div></div>
+<div id="foot"><span id="fm"></span></div>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
 const $ = id => document.getElementById(id);
+
+/* ================= MONEY SETTINGS =================
+   Paste your own IDs here. Until you do, the Buy buttons are normal search links (no commission)
+   and the Support button stays hidden. */
+const MONEY = {
+  amazonTag:  "PASTE_YOUR_AMAZON_TAG",       /* Amazon Associates India tracking ID, e.g. bookflix-21 */
+  flipkartId: "PASTE_YOUR_FLIPKART_AFFID",   /* Flipkart Affiliate ID */
+  upiId:      "PASTE_YOUR_UPI_ID",           /* e.g. name@okaxis, for the Support button */
+  contactEmail: "bhavanshgaur1@gmail.com"
+};
+const isSet = v => !!v && !/^PASTE/.test(v);
+const amazonLink = d => 'https://www.amazon.in/s?k=' + encodeURIComponent(d.title + ' ' + (d.authors[0] || '') + ' book') + (isSet(MONEY.amazonTag) ? '&tag=' + encodeURIComponent(MONEY.amazonTag) : '');
+const flipkartLink = d => 'https://www.flipkart.com/search?q=' + encodeURIComponent(d.title + ' ' + (d.authors[0] || '')) + (isSet(MONEY.flipkartId) ? '&affid=' + encodeURIComponent(MONEY.flipkartId) : '');
+
+/* ================= FIREBASE =================
+   1) Create a Firebase project, enable Email/Password sign-in and Firestore.
+   2) Paste your web app config below (Project settings > Your apps > firebaseConfig).
+   Until you replace the PASTE_... values the site keeps working in "browser only" mode. */
+const FIREBASE_CONFIG = {
+  apiKey: "PASTE_YOUR_API_KEY",
+  authDomain: "PASTE_YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "PASTE_YOUR_PROJECT_ID",
+  storageBucket: "PASTE_YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "PASTE_YOUR_SENDER_ID",
+  appId: "PASTE_YOUR_APP_ID"
+};
+const FB_ON = typeof firebase !== 'undefined' && !!FIREBASE_CONFIG.apiKey && !/^PASTE/.test(FIREBASE_CONFIG.apiKey);
+let fbAuth = null, fbDb = null, fbUid = '', fbEmail = '';
+let regBusy = false, authReady = false, introDone = false, dirty = false, flushT = null;
+const CACHE = {users:{}, stats:{}, lib:{}, rev:{}};   /* cloud data, keyed by uid */
+const myEmail = () => FB_ON ? fbEmail : localStorage.getItem('bf_session');
+
+function fbErr(e){
+  const m = {
+    'auth/email-already-in-use':'This email is already registered.',
+    'auth/invalid-credential':'Incorrect email or password.', 'auth/wrong-password':'Incorrect email or password.',
+    'auth/user-not-found':'Incorrect email or password.', 'auth/invalid-login-credentials':'Incorrect email or password.',
+    'auth/weak-password':'Password must be at least 6 characters.', 'auth/invalid-email':'Enter a valid email.',
+    'auth/network-request-failed':'Network error. Check your internet.', 'auth/too-many-requests':'Too many attempts. Try again later.',
+    'auth/operation-not-allowed':'Email/Password sign-in is not enabled in Firebase.',
+    'auth/unauthorized-domain':'This website domain is not allowed in Firebase (Authentication > Settings > Authorized domains).',
+    'permission-denied':'Database rules blocked this. Check your Firestore rules.'
+  };
+  return m[e.code] || ('Error: ' + (e.code || e.message));
+}
+async function fbLoad(user){
+  const uid = user.uid; fbUid = uid; fbEmail = user.email || '';
+  const [pDoc, uDoc, pSnap] = await Promise.all([fbDb.doc('profiles/' + uid).get(), fbDb.doc('users/' + uid).get(), fbDb.collection('profiles').get()]);
+  let p = pDoc.exists ? pDoc.data() : null;
+  if(!p){ p = {name:(user.email || 'Reader').split('@')[0], av:'\u{1F642}', searches:0}; await fbDb.doc('profiles/' + uid).set(p); }
+  const u = uDoc.exists ? uDoc.data() : {};
+  CACHE.users = {}; CACHE.stats = {}; CACHE.lib = {};
+  pSnap.forEach(d => { const x = d.data(); CACHE.users[d.id] = {name:x.name, av:x.av}; CACHE.stats[d.id] = {secs:0, searches:x.searches || 0, books:{}, recent:[]}; });
+  CACHE.users[uid] = {name:p.name, av:p.av};
+  CACHE.stats[uid] = {secs:u.secs || 0, searches:u.searches || 0, books:u.books || {}, recent:u.recent || []};
+  CACHE.lib[uid] = {likes:u.likes || [], playlist:u.playlist || []};
+}
+async function refreshBoard(){
+  try{
+    const snap = await fbDb.collection('profiles').get();
+    snap.forEach(d => { if(d.id === fbUid) return; const x = d.data();
+      CACHE.users[d.id] = {name:x.name, av:x.av}; CACHE.stats[d.id] = {secs:0, searches:x.searches || 0, books:{}, recent:[]}; });
+  }catch(e){}
+}
+async function loadReviews(key){
+  try{
+    const snap = await fbDb.collection('reviews').where('bookKey', '==', key).get(), list = [];
+    snap.forEach(d => { const x = d.data(); list.push({id:d.id, u:x.uid, name:x.name, av:x.av, text:x.text, t:x.t}); });
+    list.sort((a,b) => b.t - a.t); CACHE.rev[key] = list;
+  }catch(e){}
+}
+function scheduleFlush(){ if(flushT) return; flushT = setTimeout(() => { flushT = null; fbFlush(); }, 3000); }
+function fbFlush(){
+  if(!FB_ON || !fbUid || !dirty) return;
+  const st = CACHE.stats[fbUid]; if(!st) return; dirty = false;
+  fbDb.doc('users/' + fbUid).set({secs:st.secs, searches:st.searches, books:st.books, recent:st.recent}, {merge:true}).catch(() => { dirty = true; });
+  fbDb.doc('profiles/' + fbUid).set({searches:st.searches}, {merge:true}).catch(() => {});
+}
+async function fbSubmit(email, pass, name){
+  const msg = $('amsg'); msg.style.color = ''; msg.textContent = 'Please wait...';
+  try{
+    if(mode === 'register'){
+      if(!name){ msg.textContent = 'Enter your name.'; return; }
+      regBusy = true;
+      const cred = await fbAuth.createUserWithEmailAndPassword(email, pass), uid = cred.user.uid;
+      await Promise.all([
+        fbDb.doc('profiles/' + uid).set({name, av:selAv, searches:0}),
+        fbDb.doc('users/' + uid).set({secs:0, searches:0, books:{}, recent:[], likes:[], playlist:[]})
+      ]);
+      await fbAuth.signOut(); regBusy = false;
+      registerDone(name, selAv, email);
+    } else {
+      await fbAuth.signInWithEmailAndPassword(email, pass);
+      msg.textContent = '';
+    }
+  }catch(e){ regBusy = false; newCaptcha(); msg.textContent = fbErr(e); }
+}
+async function onAuth(user){
+  if(regBusy) return;
+  if(user){
+    try{ await fbLoad(user); }catch(e){ toast('Could not load your data: ' + (e.code || e.message)); }
+    authReady = true;
+    if(introDone) showApp();
+  } else {
+    fbUid = ''; fbEmail = ''; authReady = true;
+    if(document.body.classList.contains('in')) logout();
+  }
+}
+function afterAuth(cb){
+  const t0 = Date.now();
+  (function w(){ if(!FB_ON || authReady || Date.now() - t0 > 8000) cb(); else setTimeout(w, 200); })();
+}
+if(FB_ON){
+  firebase.initializeApp(FIREBASE_CONFIG);
+  fbAuth = firebase.auth(); fbDb = firebase.firestore();
+  fbAuth.onAuthStateChanged(onAuth);
+  setInterval(fbFlush, 30000);
+  document.addEventListener('visibilitychange', () => { if(document.visibilityState === 'hidden') fbFlush(); });
+  window.addEventListener('pagehide', fbFlush);
+}
 let mode = 'login', capAns = 0, capTime = 0;
 
 /* ---------- Bot verification ---------- */
@@ -155,7 +433,7 @@ async function hash(s){
   }
   return btoa(unescape(encodeURIComponent(s)));
 }
-const getUsers = () => JSON.parse(localStorage.getItem('bf_users') || '{}');
+const getUsers = () => FB_ON ? CACHE.users : JSON.parse(localStorage.getItem('bf_users') || '{}');
 const setUsers = u => localStorage.setItem('bf_users', JSON.stringify(u));
 
 function setMode(m, keepMsg){
@@ -163,6 +441,8 @@ function setMode(m, keepMsg){
   $('atitle').textContent = m==='login' ? 'Login' : 'Register';
   $('abtn').textContent = m==='login' ? 'Login' : 'Register';
   $('name').classList.toggle('hide', m==='login');
+  $('avwrap').classList.toggle('hide', m==='login');
+  if(m === 'register') avSpin(); else avHalt();
   if(!keepMsg) $('amsg').textContent = '';
   $('aswitch').innerHTML = m==='login'
     ? 'New to Bookflix? <span class="link" onclick="setMode(\'register\')">Register</span>'
@@ -177,16 +457,16 @@ $('abtn').onclick = async () => {
   const users = getUsers();
   if(!/^\S+@\S+\.\S+$/.test(email)) return msg.textContent = 'Enter a valid email.';
   if(pass.length < 6) return msg.textContent = 'Password must be at least 6 characters.';
+  if(mode === 'register' && !selAv){ msg.textContent = 'Press STOP to pick your hero avatar.'; return; }
   const bad = botOk();
   if(bad){ msg.textContent = bad; newCaptcha(); return; }
+  if(FB_ON) return fbSubmit(email, pass, name);
   const h = await hash(pass);
   if(mode === 'register'){
     if(!name) return msg.textContent = 'Enter your name.';
     if(users[email]){ newCaptcha(); return msg.textContent = 'This email is already registered.'; }
-    users[email] = {name, h}; setUsers(users);
-    setMode('login', true);
-    msg.style.color = '#4caf50';
-    msg.textContent = 'Registration successful! Please login.';
+    users[email] = {name, h, av:selAv}; setUsers(users);
+    registerDone(name, selAv, email);
   } else {
     if(!users[email] || users[email].h !== h){ newCaptcha(); return msg.textContent = 'Incorrect email or password.'; }
     localStorage.setItem('bf_session', email);
@@ -197,21 +477,27 @@ $('abtn').onclick = async () => {
 /* ---------- Stats, points & ranks ---------- */
 const RANKS = [
   {name:'Newbie Reader', icon:'&#128214;', min:0},
-  {name:'Bookworm', icon:'&#128027;', min:50},
-  {name:'Page Turner', icon:'&#128220;', min:150},
-  {name:'Scholar', icon:'&#127891;', min:400},
-  {name:'Bookflix Legend', icon:'&#128081;', min:800}
+  {name:'Bookworm', icon:'&#128027;', min:10},
+  {name:'Page Turner', icon:'&#128220;', min:30},
+  {name:'Scholar', icon:'&#127891;', min:50},
+  {name:'Bibliophile', icon:'&#128218;', min:70},
+  {name:'Book Master', icon:'&#127942;', min:85},
+  {name:'Bookflix Legend', icon:'&#128081;', min:100},
+  {name:'Untouchable', icon:'&#128142;', min:200},
+  {name:'God', icon:'&#9889;', min:500}
 ];
 const blank = () => ({secs:0, searches:0, books:{}, recent:[]});
-const getStats = () => JSON.parse(localStorage.getItem('bf_stats') || '{}');
-const me = () => localStorage.getItem('bf_session');
+const getStats = () => FB_ON ? CACHE.stats : JSON.parse(localStorage.getItem('bf_stats') || '{}');
+const me = () => FB_ON ? fbUid : localStorage.getItem('bf_session');
 const curStats = () => getStats()[me()] || blank();
-const pts = st => st.searches * 10 + Math.floor(st.secs / 60) * 2;
+const pts = st => st.searches;
 const rankOf = p => RANKS.filter(r => p >= r.min).pop();
-function upd(fn){
+function upd(fn, quiet){
   const e = me(); if(!e) return;
   const all = getStats(); const st = all[e] || (all[e] = blank());
-  fn(st); localStorage.setItem('bf_stats', JSON.stringify(all));
+  fn(st);
+  if(FB_ON){ dirty = true; if(!quiet) scheduleFlush(); }
+  else localStorage.setItem('bf_stats', JSON.stringify(all));
 }
 function fmtTime(sec){
   const h = Math.floor(sec/3600), m = Math.floor(sec%3600/60), s = sec%60;
@@ -224,7 +510,7 @@ function toast(msg){
 /* watch time = time spent on Bookflix while the tab is visible */
 setInterval(() => {
   if(me() && document.visibilityState === 'visible'){
-    upd(st => { st.secs++; });
+    upd(st => { st.secs++; }, true);
     if(!$('dash').classList.contains('hide') && $('dWatch')){
       const st = curStats(); $('dWatch').textContent = fmtTime(st.secs); $('dPts').textContent = pts(st);
     }
@@ -236,52 +522,327 @@ function renderDash(){
   const p = pts(st), r = rankOf(p), nx = RANKS[RANKS.indexOf(r) + 1];
   const pct = nx ? Math.round((p - r.min) / (nx.min - r.min) * 100) : 100;
   const all = getStats();
-  const board = Object.entries(getUsers()).map(([em, uu]) => ({em, name:uu.name, p:pts(all[em] || blank())})).sort((a,b) => b.p - a.p);
+  const board = Object.entries(getUsers()).map(([em, uu]) => ({em, av:uu.av || '\u{1F642}', name:uu.name, p:pts(all[em] || blank())})).sort((a,b) => b.p - a.p);
   const medal = ['&#129351;','&#129352;','&#129353;'];
   const top = Object.entries(st.books).sort((a,b) => b[1] - a[1]).slice(0,5);
   $('dash').innerHTML = `
-    <h2>${esc(u.name)}'s Dashboard</h2>
+    <h2>${u.av || '\u{1F642}'} ${esc(u.name)}'s Dashboard</h2>
     <div class="rankcard">
       <div class="rn">${r.icon} ${r.name}</div>
       <div class="bar"><i id="dbar" style="width:0"></i></div>
-      <small>${nx ? (nx.min - p) + ' more points to reach ' + nx.icon + ' ' + nx.name : 'You reached the top rank!'}</small>
+      <small>${nx ? (nx.min - p) + ' more searches to reach ' + nx.icon + ' ' + nx.name : 'You reached the top rank!'}</small>
+      <div class="ladder">${RANKS.map(x => `<span class="tag">${x.icon} ${x.name}${x.min ? ': ' + x.min + ' searches' : ''}</span>`).join('')}</div>
     </div>
     <div class="stats">
       <div class="stat"><small>Watch time on Bookflix</small><div class="n" id="dWatch">${fmtTime(st.secs)}</div></div>
       <div class="stat"><small>Total searches</small><div class="n">${st.searches}</div></div>
-      <div class="stat"><small>Points</small><div class="n" id="dPts">${p}</div></div>
-      <div class="stat"><small>Your position</small><div class="n">#${board.findIndex(b => b.em === email) + 1} of ${board.length}</div></div>
+      <div class="stat"><small>Points (1 search = 1 point)</small><div class="n" id="dPts">${p}</div></div>
     </div>
     <div class="two">
       <div class="panel"><h3>&#128269; Recent searches</h3>${st.recent.length ? st.recent.map(x => `<span class="chip" onclick="searchFor(this.dataset.q)" data-q="${esc(x)}">${esc(x)}</span>`).join('') : 'No searches yet.'}</div>
       <div class="panel"><h3>&#128215; Most viewed books</h3>${top.length ? top.map(b => `<div class="row">${esc(b[0])} <span class="tag">${b[1]}x</span></div>`).join('') : 'Nothing yet.'}</div>
     </div>
     <div class="panel"><h3>&#127942; Leaderboard</h3>
-      <table class="lb"><tr><th>Rank</th><th>Reader</th><th>Level</th><th>Points</th></tr>
-      ${board.map((b,k) => `<tr class="${b.em === email ? 'me' : ''}"><td>${medal[k] || '#' + (k+1)}</td><td>${esc(b.name)}${b.em === email ? ' (you)' : ''}</td><td>${rankOf(b.p).icon} ${rankOf(b.p).name}</td><td>${b.p}</td></tr>`).join('')}</table>
-      <small style="color:#888">Points: 10 per search + 2 per minute on Bookflix. Leaderboard shows accounts on this device.</small>
+      <table class="lb"><tr><th>#</th><th>Reader</th><th>Rank</th></tr>
+      ${board.map((b,k) => `<tr class="${b.em === email ? 'me' : ''}"><td>${medal[k] || '#' + (k+1)}</td><td>${b.av} ${esc(b.name)}${b.em === email ? ' (you)' : ''}</td><td>${rankOf(b.p).icon} ${rankOf(b.p).name}</td></tr>`).join('')}</table>
+      <small style="color:#888">1 search = 1 point. The leaderboard shows ${FB_ON ? 'all Bookflix readers.' : 'accounts on this device.'}</small>
     </div>`;
   setTimeout(() => { const b = $('dbar'); if(b) b.style.width = pct + '%'; }, 80);
 }
+/* ---------- Reviews (comments shown to every account on this device) ---------- */
+const getRev = () => FB_ON ? CACHE.rev : JSON.parse(localStorage.getItem('bf_reviews') || '{}');
+const bkey = d => String(d.title).toLowerCase().trim();
+function renderReviews(){
+  const d = window._cur, box = $('reviews'); if(!d || !box) return;
+  const list = getRev()[bkey(d)] || [];
+  box.innerHTML = `<h3>&#11088; Reader reviews (${list.length})</h3>` + (list.length
+    ? list.map((r,k) => `<div class="rv"><span class="ava">${r.av || '\u{1F642}'}</span><div><b>${esc(r.name)}</b><small>${new Date(r.t).toLocaleDateString()}</small><div>${esc(r.text)}</div>${r.u === me() ? `<button class="rm" onclick="delReview(${k})">Delete</button>` : ''}</div></div>`).join('')
+    : 'No reviews yet. Be the first to comment!');
+}
+function postReview(){
+  const d = window._cur, text = $('cmText').value.trim();
+  if(!d) return; if(!text) return toast('Write something first.');
+  const u = getUsers()[me()], all = getRev(), key = bkey(d);
+  const rec = {u:me(), name:u.name, av:u.av || '\u{1F642}', text:text.slice(0,500), t:Date.now()};
+  if(FB_ON){
+    fbDb.collection('reviews').add({bookKey:key, uid:rec.u, name:rec.name, av:rec.av, text:rec.text, t:rec.t})
+      .then(ref => { (CACHE.rev[key] = CACHE.rev[key] || []).unshift({...rec, id:ref.id}); renderReviews(); })
+      .catch(err => toast('Could not post: ' + (err.code || err.message)));
+  } else {
+    (all[key] = all[key] || []).unshift(rec);
+    localStorage.setItem('bf_reviews', JSON.stringify(all));
+  }
+  $('cmText').value = ''; $('cmBox').classList.add('hide');
+  renderReviews(); toast('&#128172; Your review was posted');
+}
+function delReview(k){
+  const d = window._cur, all = getRev(), list = all[bkey(d)] || [];
+  if(list[k] && list[k].u === me()){
+    if(FB_ON && list[k].id) fbDb.doc('reviews/' + list[k].id).delete().catch(() => {});
+    list.splice(k, 1); if(!FB_ON) localStorage.setItem('bf_reviews', JSON.stringify(all));
+    renderReviews();
+  }
+}
+
+/* ---------- Support, Privacy & Terms ---------- */
+function openInfo(html){ $('infoBody').innerHTML = html; $('infoBg').classList.remove('hide'); }
+function closeInfo(){ $('infoBg').classList.add('hide'); }
+function copyUpi(){ try{ navigator.clipboard.writeText(MONEY.upiId); toast('UPI ID copied'); }catch(e){} }
+function openSupport(){
+  if(!isSet(MONEY.upiId)) return;
+  openInfo(`<h2>&#128155; Support Bookflix</h2>
+    <p>Bookflix is free. If you enjoy it, you can support the developer, Bhavansh Gaur, with any amount. Thank you!</p>
+    <p>UPI ID: <b>${esc(MONEY.upiId)}</b></p>
+    <button onclick="copyUpi()">Copy UPI ID</button>
+    <a class="bbtn" style="background:#e50914;margin-left:6px" href="upi://pay?pa=${encodeURIComponent(MONEY.upiId)}&pn=Bookflix&cu=INR">Pay with UPI app</a>
+    <p><small style="color:#888">The UPI button works on phones that have a UPI app.</small></p>`);
+}
+function openLegal(){
+  const store = FB_ON ? 'Google Firebase (Authentication and Cloud Firestore)' : 'your own browser (local storage)';
+  openInfo(`<h2>Privacy Policy</h2><p><small>Last updated: October 2026</small></p>
+    <h3>What we collect</h3>
+    <ul><li>Your name, email address and chosen avatar when you register.</li>
+    <li>Your activity: searches, time spent on Bookflix, liked books, playlist, and the reviews you post.</li>
+    <li>Passwords are handled by the sign-in service. The developer cannot see them.</li></ul>
+    <h3>Where it is stored</h3><p>In ${store}. Reviews you post are visible to other Bookflix readers with your name and avatar. Your email is never shown to other readers.</p>
+    <h3>Third-party services</h3>
+    <p>Book data, covers and readers come from Open Library, Google Books, Internet Archive and Wikipedia. Buy buttons open Amazon or Flipkart, which have their own privacy policies. If ads are added in future (for example Google AdSense), those vendors may use cookies to show ads.</p>
+    <h3>Your choices</h3><p>You can ask for your account and data to be deleted by emailing <b>${esc(MONEY.contactEmail)}</b>. Bookflix stores a small amount of data in your browser (local storage) to keep you signed in and remember settings.</p>
+    <h3>Young users</h3><p>If you are under 18, please use Bookflix with a parent's or guardian's permission.</p>
+    <h2 style="margin-top:28px">Terms of Use</h2>
+    <ul><li>Bookflix is provided as is, without any guarantee. Book details come from third parties and may be incomplete or wrong.</li>
+    <li>You can read full books only when they are free or in the public domain. Respect copyright.</li>
+    <li>Keep reviews respectful. No abuse, spam or illegal content. We may remove content or accounts that break these rules.</li>
+    <li>Affiliate disclosure: As an Amazon Associate, Bookflix earns from qualifying purchases. Some Buy links are affiliate links, so Bookflix may earn a commission from qualifying purchases at no extra cost to you.</li>
+    <li>These terms may change. Questions: <b>${esc(MONEY.contactEmail)}</b>. These terms follow the laws of India.</li></ul>`);
+}
+
+/* ---------- Read the full book ---------- */
+function openReader(title, src, link){
+  $('rtitle').textContent = '\u{1F4D6} ' + title; $('rframe').src = src; $('rlink').href = link;
+  $('reader').classList.remove('hide');
+}
+function closeReader(){ $('reader').classList.add('hide'); $('rframe').src = 'about:blank'; }
+async function findIA(d){
+  const clean = t => String(t || '').replace(/["()]/g, ' ');
+  const q = 'title:("' + clean(d.title) + '") AND creator:("' + clean(d.authors[0]) + '") AND mediatype:texts AND access-restricted-item:false';
+  try{
+    const r = await J('https://archive.org/advancedsearch.php?q=' + encodeURIComponent(q) + '&fl%5B%5D=identifier&rows=1&sort%5B%5D=downloads+desc&output=json');
+    const x = r.response && r.response.docs[0]; if(x) return x.identifier;
+  }catch(e){}
+  return (d.ia && d.ia[0]) || '';
+}
+async function readBook(){
+  const d = window._cur; if(!d) return;
+  const btn = $('readBtn');
+  /* Google Books result with full view */
+  if(d.src === 'gb'){
+    if(d.view === 'ALL_PAGES' && d.embeddable)
+      return openReader(d.title, 'https://books.google.com/books?id=' + d.gid + '&output=embed', 'https://books.google.com/books?id=' + d.gid);
+    return toast('Full text is not free for this book (copyright).');
+  }
+  /* Open Library / Internet Archive */
+  if(d.access === 'public'){
+    btn.innerHTML = '&#8987; Opening...';
+    const id = await findIA(d);
+    btn.innerHTML = '&#128214; Read';
+    if(id) return openReader(d.title, 'https://archive.org/embed/' + id, 'https://archive.org/details/' + id);
+  }
+  if(d.access === 'borrowable' || d.access === 'printdisabled'){
+    window.open('https://openlibrary.org' + d.key, '_blank', 'noopener');
+    return toast('This book can be borrowed free on Open Library.');
+  }
+  toast('This book is under copyright, so the full text is not free. Classics can be read fully!');
+}
+
+const DEV = 'bhavanshgaur1@gmail.com';
+/* ---------- Hero avatar roller: rolls horizontally, the hero that stops under the red box is yours ---------- */
+const AVS = [
+  {e:'\u{1F6E1}\uFE0F', n:'Shield Hero'}, {e:'\u26A1', n:'Thunder Hero'}, {e:'\u{1F916}', n:'Armor Hero'}, {e:'\u{1F577}\uFE0F', n:'Web Hero'},
+  {e:'\u{1F4AA}', n:'Giant Hero'}, {e:'\u{1F3F9}', n:'Archer Hero'}, {e:'\u{1F41C}', n:'Tiny Hero'}, {e:'\u{1F52E}', n:'Mystic Hero'},
+  {e:'\u{1F985}', n:'Sky Hero'}, {e:'\u{1F406}', n:'Jungle Hero'}, {e:'\u{1F30C}', n:'Cosmic Hero'}, {e:'\u{1F525}', n:'Flame Hero'}
+];
+const AV_ITEM = 84, AV_CYC = AVS.length * AV_ITEM;
+let selAv = '';
+const avr = {pos:AV_CYC, speed:0, mode:'idle', raf:0, last:0};
+function avBuild(){
+  $('avstrip').innerHTML = [0,1,2].map(() => AVS.map(a => `<div class="avc">${a.e}</div>`).join('')).join('');
+  $('avstrip').style.transform = `translateX(${-avr.pos}px)`;
+  $('avbtn').onclick = () => { if(avr.mode === 'roll') avr.mode = 'slow'; else if(avr.mode === 'done' || avr.mode === 'idle') avSpin(); };
+}
+function avCenterIndex(){ return Math.round((avr.pos + $('avroll').clientWidth / 2 - 36) / AV_ITEM); }
+function avFrame(t){
+  const dt = Math.min(.05, (t - avr.last) / 1000 || 0); avr.last = t;
+  if(avr.mode === 'roll' || avr.mode === 'slow'){
+    if(avr.mode === 'slow'){
+      avr.speed *= Math.exp(-2.6 * dt);
+      if(avr.speed < 70){
+        avr.mode = 'snap'; avr.t0 = t; avr.from = avr.pos;
+        avr.to = avCenterIndex() * AV_ITEM + 36 - $('avroll').clientWidth / 2;
+      }
+    }
+    avr.pos += avr.speed * dt;
+    if(avr.pos >= 2 * AV_CYC) avr.pos -= AV_CYC;
+  } else if(avr.mode === 'snap'){
+    const k = Math.min(1, (t - avr.t0) / 450), e = 1 - Math.pow(1 - k, 3);
+    avr.pos = avr.from + (avr.to - avr.from) * e;
+    if(k >= 1){ avr.mode = 'done'; avPicked(); }
+  }
+  $('avstrip').style.transform = `translateX(${-avr.pos}px)`;
+  if(avr.mode !== 'done' && avr.mode !== 'idle') avr.raf = requestAnimationFrame(avFrame);
+}
+function avSpin(){
+  cancelAnimationFrame(avr.raf);
+  if(avr.pos < AV_CYC) avr.pos += AV_CYC; if(avr.pos >= 2 * AV_CYC) avr.pos -= AV_CYC;
+  document.querySelectorAll('#avstrip .pick').forEach(c => c.classList.remove('pick'));
+  document.querySelectorAll('#avroll .sp').forEach(c => c.remove());
+  selAv = ''; avr.mode = 'roll'; avr.speed = 680; avr.last = performance.now();
+  $('avname').textContent = 'Rolling...'; $('avbtn').textContent = 'STOP';
+  avr.raf = requestAnimationFrame(avFrame);
+}
+function avHalt(){ cancelAnimationFrame(avr.raf); avr.mode = 'idle'; }
+function avPicked(){
+  let g = avCenterIndex();
+  if(g < AV_CYC / AV_ITEM){ g += AVS.length; avr.pos += AV_CYC; } else if(g >= 2 * AVS.length){ g -= AVS.length; avr.pos -= AV_CYC; }
+  $('avstrip').style.transform = `translateX(${-avr.pos}px)`;
+  const a = AVS[((g % AVS.length) + AVS.length) % AVS.length];
+  selAv = a.e;
+  const card = $('avstrip').children[g]; if(card) card.classList.add('pick');
+  const mk = $('avmark'); mk.classList.remove('flash'); void mk.offsetWidth; mk.classList.add('flash');
+  for(let k = 0; k < 16; k++){
+    const sp = document.createElement('span'), ang = k / 16 * Math.PI * 2, r = 50 + Math.random() * 40;
+    sp.className = 'sp'; sp.style.setProperty('--dx', Math.cos(ang) * r + 'px'); sp.style.setProperty('--dy', Math.sin(ang) * r * .7 + 'px');
+    $('avroll').appendChild(sp); setTimeout(() => sp.remove(), 1000);
+  }
+  const nm = $('avname'); nm.classList.remove('pop'); void nm.offsetWidth; nm.classList.add('pop');
+  nm.innerHTML = `You are <b>${a.n}</b> ${a.e}`;
+  $('avbtn').textContent = 'SPIN AGAIN';
+}
+
+/* ---------- Library (likes) & Playlist (with comments) ---------- */
+const getLib = () => FB_ON ? CACHE.lib : JSON.parse(localStorage.getItem('bf_lib') || '{}');
+const myLib = () => getLib()[me()] || {likes:[], playlist:[]};
+function updLib(fn){
+  const e = me(); if(!e) return;
+  const all = getLib(); const l = all[e] || (all[e] = {likes:[], playlist:[]});
+  fn(l);
+  if(FB_ON) fbDb.doc('users/' + e).set({likes:l.likes, playlist:l.playlist}, {merge:true}).catch(() => toast('Could not save to the cloud.'));
+  else localStorage.setItem('bf_lib', JSON.stringify(all));
+}
+const bookRef = d => ({title:d.title, author:(d.authors || [])[0] || 'Unknown', year:d.year || '', cover:d.cover || ''});
+function setLikeBtn(){
+  const b = $('likeBtn'); if(!b || !window._cur) return;
+  const liked = myLib().likes.some(x => x.title === window._cur.title);
+  b.innerHTML = liked ? '&#10084;&#65039; Liked' : '&#9825; Like';
+  b.classList.toggle('on', liked);
+}
+function toggleLike(){
+  const d = window._cur; if(!d) return; let added = false;
+  updLib(l => {
+    const k = l.likes.findIndex(b => b.title === d.title);
+    if(k >= 0) l.likes.splice(k, 1); else { l.likes.unshift(bookRef(d)); added = true; }
+  });
+  setLikeBtn();
+  toast(added ? '&#10084;&#65039; Added to your Library' : 'Removed from your Library');
+}
+function savePlaylist(){
+  const d = window._cur; if(!d) return;
+  const note = $('plNote').value.trim();
+  updLib(l => { l.playlist = l.playlist.filter(x => x.title !== d.title); l.playlist.unshift({...bookRef(d), comment:note}); });
+  $('plBox').classList.add('hide'); $('plNote').value = '';
+  toast('&#127925; Added to your Playlist');
+}
+function openBook(kind, k){ const b = myLib()[kind][k]; if(b) searchFor(b.title); }
+function rmLib(kind, k){ updLib(l => l[kind].splice(k, 1)); renderLib(); }
+function renderLib(){
+  const l = myLib();
+  $('lib').innerHTML = `
+    <h2>&#128218; My Library</h2>
+    <div class="panel"><h3>&#10084;&#65039; Liked books (${l.likes.length})</h3>
+      ${l.likes.length ? `<div class="grid">${l.likes.map((b,k) => `
+        <div class="bk"><img src="${esc(b.cover)}" alt="" onclick="openBook('likes',${k})" onerror="this.style.visibility='hidden'">
+          <b onclick="openBook('likes',${k})">${esc(b.title)}</b><small>${esc(b.author)}</small>
+          <button class="rm" onclick="rmLib('likes',${k})">Remove</button></div>`).join('')}</div>`
+        : 'No liked books yet. Tap the heart under a book to add it here.'}
+    </div>
+    <div class="panel"><h3>&#127925; My Playlist (${l.playlist.length})</h3>
+      ${l.playlist.length ? l.playlist.map((b,k) => `
+        <div class="pl"><img src="${esc(b.cover)}" alt="" onclick="openBook('playlist',${k})" onerror="this.style.visibility='hidden'">
+          <div><b>${esc(b.title)}</b> <small style="color:#aaa">by ${esc(b.author)}</small>
+          ${b.comment ? `<div class="cm">&ldquo;${esc(b.comment)}&rdquo;</div>` : ''}
+          <button class="rm" onclick="rmLib('playlist',${k})">Remove</button></div></div>`).join('')
+        : 'Your playlist is empty. Use "Add to playlist" under a book and leave a comment.'}
+    </div>`;
+}
+
+/* ---------- Chat with developer (opens an email draft) ---------- */
+function renderContact(){
+  $('contact').innerHTML = `
+    <h2>&#9993;&#65039; Chat with Developer</h2>
+    <div class="panel">
+      <p>Send a message to the developer, <b>Bhavansh Gaur</b> (${DEV}).</p>
+      <select id="cSub"><option>Feedback</option><option>Report a bug</option><option>Feature request</option><option>Other</option></select>
+      <textarea id="cMsg" rows="6" placeholder="Type your message..."></textarea>
+      <button onclick="sendMail(false)">Open in my email app</button>
+      <button class="ghost" onclick="sendMail(true)">Open in Gmail</button>
+      <p><small style="color:#888">This opens an email draft addressed to the developer. Press Send in your email to deliver it.</small></p>
+    </div>`;
+}
+function sendMail(gmail){
+  const u = getUsers()[me()], enc = encodeURIComponent;
+  const sub = 'Bookflix: ' + $('cSub').value;
+  const body = $('cMsg').value.trim() + '\n\n--\nFrom: ' + u.name + ' (' + myEmail() + ')';
+  if(gmail) window.open('https://mail.google.com/mail/?view=cm&to=' + DEV + '&su=' + enc(sub) + '&body=' + enc(body), '_blank');
+  else location.href = 'mailto:' + DEV + '?subject=' + enc(sub) + '&body=' + enc(body);
+}
+
+/* ---------- Navigation ---------- */
 function view(v){
-  $('app').classList.toggle('hide', v !== 'app');
-  $('dash').classList.toggle('hide', v !== 'dash');
-  if(v === 'dash') renderDash();
+  ['app','dash','lib','contact'].forEach(x => $(x).classList.toggle('hide', x !== v));
+  document.querySelectorAll('#side a').forEach(a => a.classList.toggle('act', a.dataset.v === v));
+  $('side').classList.remove('open');
+  if(v === 'dash'){ renderDash(); if(FB_ON) refreshBoard().then(() => { if(!$('dash').classList.contains('hide')) renderDash(); }); }
+  if(v === 'lib') renderLib();
+  if(v === 'contact') renderContact();
 }
 function searchFor(q){ view('app'); $('q').value = q; search(); }
+
+function registerDone(name, av, email){
+  const cf = Array.from({length:30}, () => `<span class="cf" style="left:${Math.random()*100}%;background:hsl(${Math.floor(Math.random()*360)} 80% 60%);animation-duration:${(1.6 + Math.random()*1.6).toFixed(2)}s;animation-delay:${(Math.random()*.7).toFixed(2)}s"></span>`).join('');
+  $('okAnim').innerHTML = cf + `<div class="okav">${av}</div>
+    <svg class="chk" viewBox="0 0 52 52"><circle class="cc" cx="26" cy="26" r="24"/><path class="cp" d="M14 27l8 8 16-16"/></svg>
+    <h2>Account created!</h2><p>Welcome to Bookflix, ${esc(name)} &#127881;</p><small>Taking you to login...</small>`;
+  $('auth').classList.add('done');
+  setTimeout(() => {
+    $('auth').classList.remove('done');
+    setMode('login', true);
+    $('email').value = email; $('pass').value = ''; $('name').value = '';
+    $('amsg').style.color = '#4caf50'; $('amsg').textContent = 'Registration successful! Please login.';
+  }, 3400);
+}
+function openAuth(m){ setMode(m); $('authBg').classList.remove('hide'); }
+function closeAuth(){ $('authBg').classList.add('hide'); avHalt(); }
+function showLanding(){
+  $('land').classList.remove('hide');
+  $('nav').innerHTML = '<span class="navbtns"><button onclick="openAuth(\'login\')">Login</button> <button class="ghost" onclick="openAuth(\'register\')">Register</button></span>';
+}
 
 function showApp(){
   const u = getUsers()[me()];
   if(!u) return logout();
-  $('auth').classList.add('hide');
+  const av = u.av || '\u{1F642}';
+  $('authBg').classList.add('hide'); $('land').classList.add('hide'); $('intro').classList.add('hide'); document.body.classList.add('in'); $('side').classList.remove('hide');
   $('hello').textContent = 'Welcome, ' + u.name + '!';
-  $('nav').innerHTML = '<button class="ghost" onclick="view(\'app\')">Search</button> <button class="ghost" onclick="view(\'dash\')">Dashboard</button> <button class="ghost" onclick="logout()">Logout</button>';
+  $('nav').innerHTML = `<span class="pill"><span class="ava">${av}</span><span class="pn">${esc(u.name)}</span></span>`;
+  $('suser').innerHTML = `<span class="ava big">${av}</span><div><b>${esc(u.name)}</b><br><small>${esc(myEmail())}</small></div>`;
+  if(!$('shelf').children.length) buildPoster('shelf', 'scv', true);
   view('app');
 }
 function logout(){
-  localStorage.removeItem('bf_session');
-  $('app').classList.add('hide'); $('dash').classList.add('hide'); $('auth').classList.remove('hide');
-  $('nav').innerHTML = ''; setMode('login');
+  if(FB_ON && fbAuth) fbAuth.signOut();
+  localStorage.removeItem('bf_session'); document.body.classList.remove('in');
+  ['app','dash','lib','contact','side'].forEach(x => $(x).classList.add('hide'));
+  setMode('login'); if(!$('poster').children.length) loadShowcase(); showLanding();
 }
 
 /* ---------- Data helpers ---------- */
@@ -322,14 +883,14 @@ function typeText(el, text){
 
 /* ---------- Search: Open Library first, Google Books as backup ---------- */
 async function searchOL(q){
-  const d = await J('https://openlibrary.org/search.json?limit=6&fields=key,title,author_name,author_key,first_publish_year,cover_i&q=' + encodeURIComponent(q));
-  return d.docs.map(x => ({src:'ol', key:x.key, title:x.title, authors:x.author_name||[], authorKey:(x.author_key||[])[0],
+  const d = await J('https://openlibrary.org/search.json?limit=6&fields=key,title,author_name,author_key,first_publish_year,cover_i,ia,ebook_access&q=' + encodeURIComponent(q));
+  return d.docs.map(x => ({src:'ol', key:x.key, title:x.title, authors:x.author_name||[], authorKey:(x.author_key||[])[0], ia:x.ia||[], access:x.ebook_access||'',
     year:x.first_publish_year, cover:x.cover_i ? `https://covers.openlibrary.org/b/id/${x.cover_i}-L.jpg` : ''}));
 }
 async function searchGB(q){
   const d = await J('https://www.googleapis.com/books/v1/volumes?maxResults=6&q=' + encodeURIComponent(q));
   return (d.items||[]).map(x => { const v = x.volumeInfo||{};
-    return {src:'gb', title:v.title, authors:v.authors||[], year:(v.publishedDate||'').slice(0,4),
+    return {src:'gb', gid:x.id, view:(x.accessInfo||{}).viewability, embeddable:(x.accessInfo||{}).embeddable, title:v.title, authors:v.authors||[], year:(v.publishedDate||'').slice(0,4),
       cover:((v.imageLinks||{}).thumbnail||'').replace('http:','https:').replace('zoom=1','zoom=2'),
       genres:v.categories||[], summary:v.description||''}; });
 }
@@ -390,6 +951,10 @@ async function pick(i){
       <div class="row"><b>First published:</b> ${esc(d.year || 'Not available')}</div>
       <div class="row"><b>Genre / Themes:</b><br>${genres.length ? genres.map(s=>`<span class="tag">${esc(s)}</span>`).join('') : 'Not available'}</div>
       <div class="row"><b>Summary:</b><br><span id="sumtxt"></span><span class="caret"></span></div>
+      <div class="acts"><button id="readBtn" onclick="readBook()">&#128214; Read</button> <button id="likeBtn" class="heart" onclick="toggleLike()">&#9825; Like</button> <button class="ghost" onclick="$('plBox').classList.toggle('hide')">&#43; Add to playlist</button> <button class="ghost" onclick="$('cmBox').classList.toggle('hide')">&#128172; Comment</button></div>
+      <div id="cmBox" class="plbox hide"><input id="cmText" type="text" maxlength="500" placeholder="Write your review of this book..."><button onclick="postReview()">Post</button></div>
+      <div id="plBox" class="plbox hide"><input id="plNote" type="text" maxlength="200" placeholder="Add a comment (why this book?)"><button onclick="savePlaylist()">Save</button></div>
+      <div class="buy"><span>&#128722; Buy this book:</span> <a class="bbtn amz" target="_blank" rel="sponsored noopener" href="${amazonLink(d)}">Amazon</a> <a class="bbtn fk" target="_blank" rel="sponsored noopener" href="${flipkartLink(d)}">Flipkart</a>${(isSet(MONEY.amazonTag) || isSet(MONEY.flipkartId)) ? '<div class="aff">'+(isSet(MONEY.amazonTag)?'As an Amazon Associate I earn from qualifying purchases. ':'')+'Affiliate links: Bookflix may earn a small commission from qualifying purchases at no extra cost to you.</div>' : ''}</div>
       <div class="src">Data source: ${d.src==='ol' ? 'Open Library (+ Wikipedia)' : 'Google Books (+ Wikipedia)'}</div>
     </div>
   </div>
@@ -405,9 +970,12 @@ async function pick(i){
     </div>
     <small id="clipmsg" class="hide">Showing the auto trailer. To use your own video, save a 10-sec clip named <b>clips/${slug}.mp4</b> next to this file.</small>
     <a target="_blank" rel="noopener" href="https://www.youtube.com/results?search_query=${encodeURIComponent(d.title + ' book review')}">&#9654; Watch book review videos on YouTube</a>
-  </div>`;
+  </div>
+  <div class="panel" id="reviews"></div>`;
   $('clipv').onerror = () => { $('clipv').classList.add('hide'); $('trailer').classList.remove('hide'); $('clipmsg').classList.remove('hide'); };
   typeText($('sumtxt'), summary);
+  window._cur = d; setLikeBtn(); renderReviews();
+  if(FB_ON) loadReviews(bkey(d)).then(renderReviews);
 }
 
 $('go').onclick = search;
@@ -454,6 +1022,7 @@ function synthStart(){
   music.ctx.resume();
   clearInterval(music.timer);
   music.timer = setInterval(() => {
+    if(music.ctx.state !== 'running') return;
     const st = music.n % 8, bar = Math.floor(music.n / 8) % 4;
     if(st === 0) CHORDS[bar].forEach(f => tone(f, 3.6, .035, 'triangle', .35));
     if(st === 0 || st === 4){ tone(ROOTS[bar], 1.3, .09, 'sine', .03); softKick(); }
@@ -473,13 +1042,37 @@ function playSong(){
     if(err && err.name === 'NotAllowedError'){ music.on = false; $('mbtn').innerHTML = '&#128263; Music'; }
   });
 }
+const YT_ID = '';   /* leave empty on a monetized site. Music = music.mp3 (copyright-free) or the built-in lo-fi loop */
+function ytStart(){
+  $('ytbox').classList.remove('hide');
+  const f = document.createElement('iframe');
+  f.title = 'Music player'; f.allow = 'autoplay; encrypted-media; picture-in-picture';
+  f.src = 'https://www.youtube.com/embed/' + YT_ID + '?autoplay=1&loop=1&playlist=' + YT_ID + '&playsinline=1&rel=0&enablejsapi=1'
+        + (location.protocol.indexOf('http') === 0 ? '&origin=' + encodeURIComponent(location.origin) : '');
+  f.onload = () => { try{ f.contentWindow.postMessage(JSON.stringify({event:'listening', id:1, channel:'widget'}), '*'); }catch(e){} };
+  $('ytslot').innerHTML = ''; $('ytslot').appendChild(f);
+  music.ytOk = false; music.ytMsg = false; clearTimeout(music.ytT);
+  music.ytT = setTimeout(() => { if(music.on && !music.ytOk && !music.ytMsg){ ytStop(); playSong(); } }, 9000);
+}
+function ytStop(){ clearTimeout(music.ytT); $('ytslot').innerHTML = ''; $('ytbox').classList.add('hide'); }
+/* if YouTube refuses to play (embedding blocked / opened from a local file), fall back to music.mp3 or the lo-fi loop */
+window.addEventListener('message', e => {
+  if(e.origin !== 'https://www.youtube.com') return;
+  let d; try{ d = JSON.parse(e.data); }catch(err){ return; }
+  if(!d) return;
+  music.ytMsg = true;
+  if(d.event === 'onStateChange' && d.info === 1) music.ytOk = true;
+  if(d.event === 'infoDelivery' && d.info && d.info.playerState === 1) music.ytOk = true;
+  if(d.event === 'onError' && music.on){ ytStop(); playSong(); }
+});
 function startMusic(){
   if(music.on) return;
   music.on = true; music.idx = 0; $('mbtn').innerHTML = '&#128266; Music';
-  playSong();
+  if(YT_ID) ytStart(); else playSong();
 }
 function stopMusic(){
   music.on = false; $('mbtn').innerHTML = '&#128263; Music';
+  ytStop();
   if(music.audio) music.audio.pause();
   clearInterval(music.timer);
   if(music.ctx) music.ctx.suspend();
@@ -489,18 +1082,82 @@ $('mbtn').onclick = () => {
   music.on ? stopMusic() : startMusic();
 };
 /* Try to autoplay right away; browsers may block it until the first click, key press or tap */
-const GESTURES = ['pointerdown','keydown','touchstart'];
+const GESTURES = ['click','keydown','touchend'];
 function onFirstGesture(e){
   if(e.target && e.target.closest && e.target.closest('#mbtn')) return;
   GESTURES.forEach(g => document.removeEventListener(g, onFirstGesture, true));
   if(music.ctx) music.ctx.resume();
-  startMusic();
+  if(!music.on){ startMusic(); return; }
+  if($('ytslot').firstChild && !music.ytOk){ ytStop(); ytStart(); }   /* load-time autoplay was blocked: retry inside this click */
+  else if(music.audio && music.audio.paused) music.audio.play().catch(() => {});
 }
 GESTURES.forEach(g => document.addEventListener(g, onFirstGesture, true));
-startMusic();
+startMusic();   /* try to start automatically as soon as the site opens */
 
+const SHOW = [
+  ["Harry Potter and the Philosopher's Stone","J.K. Rowling","9780747532743"],["The Hobbit","J.R.R. Tolkien","9780547928227"],
+  ["1984","George Orwell","9780451524935"],["To Kill a Mockingbird","Harper Lee","9780061120084"],
+  ["The Great Gatsby","F. Scott Fitzgerald","9780743273565"],["Pride and Prejudice","Jane Austen","9780141439518"],
+  ["The Alchemist","Paulo Coelho","9780062315007"],["Hamlet","William Shakespeare","9780743477123"],
+  ["Frankenstein","Mary Shelley","9780141439471"],["Dracula","Bram Stoker","9780141439846"],
+  ["Jane Eyre","Charlotte Bront\u00eb","9780141441146"],["Moby-Dick","Herman Melville","9780142437247"],
+  ["Crime and Punishment","Fyodor Dostoevsky","9780143058144"],["The Catcher in the Rye","J.D. Salinger","9780316769488"],
+  ["Brave New World","Aldous Huxley","9780060850524"],["Little Women","Louisa May Alcott","9780147514011"],
+  ["Wuthering Heights","Emily Bront\u00eb","9780141439556"],["Life of Pi","Yann Martel","9780156027328"]
+];
+/* resolves true only if the image really loads (and is not a 1x1 placeholder) */
+function tryImg(url){
+  return new Promise(res => {
+    const im = new Image(), t = setTimeout(() => res(false), 9000);
+    im.onload = () => { clearTimeout(t); res(im.naturalWidth > 20); };
+    im.onerror = () => { clearTimeout(t); res(false); };
+    im.src = url;
+  });
+}
+/* Cover lookup: 1) Open Library by ISBN  2) Open Library search  3) Google Books */
+async function coverFor(b){
+  const [title, author, isbn] = b, e = encodeURIComponent;
+  let u = 'https://covers.openlibrary.org/b/isbn/' + isbn + '-M.jpg?default=false';
+  if(await tryImg(u)) return u;
+  try{
+    const d = await J('https://openlibrary.org/search.json?limit=1&fields=cover_i&title=' + e(title) + '&author=' + e(author));
+    const id = d.docs[0] && d.docs[0].cover_i;
+    if(id){ u = 'https://covers.openlibrary.org/b/id/' + id + '-M.jpg?default=false'; if(await tryImg(u)) return u; }
+  }catch(err){}
+  try{
+    const g = await J('https://www.googleapis.com/books/v1/volumes?maxResults=1&q=intitle:' + e(title) + '+inauthor:' + e(author));
+    const il = g.items && g.items[0] && g.items[0].volumeInfo.imageLinks;
+    if(il){ u = (il.thumbnail || il.smallThumbnail).replace('http:', 'https:'); if(await tryImg(u)) return u; }
+  }catch(err){}
+  return '';
+}
+const coverCache = {};
+function getCover(b, i){
+  if(!coverCache[i]) coverCache[i] = coverFor(b).then(u => { if(!u) delete coverCache[i]; return u; });
+  return coverCache[i];
+}
+function buildPoster(elId, pre, clickable){
+  $(elId).innerHTML = SHOW.map((b,i) => `<div class="pc" style="--i:${i}"${clickable ? ` onclick="searchFor(SHOW[${i}][0])"` : ''}><div class="pcv" id="${pre}${i}" style="background-image:linear-gradient(160deg,hsl(${i*47 % 360} 55% 30%),#111)"><span>${esc(b[0])}</span></div><div class="pt">${esc(b[0])}</div><div class="pa">${esc(b[1])}</div></div>`).join('');
+  SHOW.forEach((b,i) => setTimeout(async () => {
+    const url = await getCover(b, i); if(!url) return;
+    const el = $(pre + i); if(el){ el.style.backgroundImage = 'url(' + url + ')'; el.classList.add('has'); }
+  }, coverCache[i] ? 0 : i * 150));
+}
+function loadShowcase(){ buildPoster('poster', 'pcv', false); }
+function runIntro(){
+  const it = $('intro'); it.classList.remove('hide');
+  $('introWord').innerHTML = 'BOOKFLIX'.split('').map((c,i) => `<span class="l" style="--d:${(1.9 + i*0.13).toFixed(2)}s">${c}</span>`).join('');
+  let done = false;
+  const end = () => { if(done) return; done = true; it.classList.add('out'); setTimeout(() => { it.classList.add('hide'); afterAuth(() => { introDone = true; if(me()) showApp(); else showLanding(); }); }, 600); };
+  setTimeout(end, 5200);
+}
+if(FB_ON) $('acctNote').textContent = 'Your account is stored securely in the cloud (Firebase). Please use a password you do not use anywhere else.';
+if(!isSet(MONEY.upiId)) document.querySelectorAll('.supp').forEach(e => e.remove());
+avBuild();
+{ const t = 'Made by Developer Bhavansh Gaur   \u2726   '.repeat(14); $('fm').textContent = t + t; }
 setMode('login');
-if(localStorage.getItem('bf_session')) showApp();
+if(FB_ON || !localStorage.getItem('bf_session')) loadShowcase();
+runIntro();
 </script>
 </body>
 </html>
