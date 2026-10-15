@@ -212,6 +212,45 @@ body.in #ytbox{left:10px;bottom:152px}
 .amz{background:#ff9900;color:#111}.fk{background:#2874f0}
 .aff{font-size:11px;color:#888;margin-top:6px;width:100%}
 .lnk{margin:8px 0 24px;color:#888;font-size:13px}.lnk span{cursor:pointer;text-decoration:underline}.lnk button{margin-left:12px;padding:6px 12px;font-size:13px}
+
+/* ===== v3: dashboard, big overlays, home ===== */
+.dhero{position:relative;overflow:hidden;border-radius:16px;padding:26px;margin-top:6px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;
+  background:radial-gradient(circle at 85% 10%,rgba(255,122,89,.35),transparent 45%),linear-gradient(135deg,#5a0b12,#1b1b1b 70%);border:1px solid rgba(229,9,20,.35);animation:pop .5s ease both}
+.dhero .dav{width:76px;height:76px;border-radius:50%;background:#000;border:3px solid #e50914;display:flex;align-items:center;justify-content:center;font-size:42px;box-shadow:0 0 28px rgba(229,9,20,.55)}
+.dhero h2{margin:0;font-size:clamp(22px,4vw,32px)}
+.dhero small{color:#d9b3b6}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:16px;margin:18px 0}
+.dtile{position:relative;overflow:hidden;border-radius:16px;padding:22px 20px;background:linear-gradient(160deg,#242424,#161616);border:1px solid #2f2f2f;animation:pop .55s ease both;transition:transform .25s,border-color .25s,box-shadow .25s}
+.dtile:hover{transform:translateY(-5px);border-color:#e50914;box-shadow:0 12px 30px rgba(229,9,20,.25)}
+.dtile:before{content:"";position:absolute;top:-40px;right:-40px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(229,9,20,.35),transparent 70%)}
+.dtile .ic{font-size:30px}
+.dtile .lb2{color:#aaa;font-size:13px;margin-top:10px;letter-spacing:.5px;text-transform:uppercase}
+.dtile .big{font-size:clamp(28px,4vw,40px);font-weight:900;margin-top:4px;background:linear-gradient(90deg,#fff,#ff7a59);-webkit-background-clip:text;background-clip:text;color:transparent}
+.dtile .big.rk{font-size:clamp(22px,3vw,28px)}
+.dtile:nth-child(2){animation-delay:.08s}.dtile:nth-child(3){animation-delay:.16s}.dtile:nth-child(4){animation-delay:.24s}
+#bigBg{position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.88);display:flex;align-items:center;justify-content:center;padding:16px;overflow:hidden}
+#bigBox{position:relative;width:100%;max-width:520px;text-align:center;padding:34px 22px;border-radius:20px;background:radial-gradient(circle at 50% 0,rgba(76,175,80,.25),transparent 60%),#141414;border:1px solid #2e7d32;animation:pop .5s ease both}
+#bigBox .chk{width:140px;height:140px}
+#bigBox h1{font-size:clamp(28px,7vw,44px);margin:10px 0 6px;animation:up .6s ease .9s both;line-height:1.15}
+#bigBox .partner{display:inline-block;margin-top:6px;padding:6px 16px;border-radius:20px;background:linear-gradient(90deg,#e50914,#ff7a59);font-weight:800;letter-spacing:1px;animation:up .6s ease 1.1s both}
+#bigBox p{color:#ccc;animation:up .6s ease 1.2s both;margin:14px 0 18px}
+#bigBox .btns{animation:up .6s ease 1.4s both;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.hhero{text-align:center;padding:30px 10px 10px;animation:up .7s ease both}
+.hhero h1{font-size:clamp(28px,6vw,52px);margin:0 0 8px}
+.hhero p{color:#bbb;margin:0 0 20px}
+.hcta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:10px}
+.hcta button{padding:14px 26px;font-size:16px;font-weight:700}
+.hauthor{margin:26px 0 6px;padding:20px;border-radius:14px;text-align:left;background:linear-gradient(135deg,#3a0a0e,#1f1f1f);border:1px solid rgba(229,9,20,.3)}
+.hauthor h3{margin:0 0 6px}
+
+.gift{font-size:130px;line-height:1;cursor:pointer;display:inline-block;animation:gshake 1.1s ease-in-out infinite;filter:drop-shadow(0 10px 30px rgba(229,9,20,.6))}
+@keyframes gshake{0%,100%{transform:rotate(0) scale(1)}15%{transform:rotate(-9deg) scale(1.05)}30%{transform:rotate(8deg) scale(1.08)}45%{transform:rotate(-6deg)}60%{transform:rotate(5deg)}75%{transform:rotate(0) scale(1.04)}}
+.gift.pop{animation:gpop .6s ease forwards}
+@keyframes gpop{0%{transform:scale(1)}50%{transform:scale(1.7) rotate(8deg)}100%{transform:scale(0);opacity:0}}
+.tapmsg{color:#ffd24a;font-weight:800;letter-spacing:2px;text-transform:uppercase;animation:blink 1s infinite}
+.offer{margin:14px 0;padding:16px;border-radius:14px;background:linear-gradient(135deg,#3a2a00,#1f1f1f);border:1px dashed #ffd24a;text-align:left}
+.offer b.brand{color:#ffd24a}
+.code{display:inline-block;margin:8px 8px 8px 0;padding:8px 14px;border-radius:6px;background:#000;border:1px solid #ffd24a;font-family:monospace;font-size:18px;letter-spacing:2px}
 </style>
 </head>
 <body>
@@ -250,18 +289,22 @@ body.in #ytbox{left:10px;bottom:152px}
 
 <aside id="side" class="hide">
   <nav>
+    <a data-v="home" onclick="view('home')">&#127968; Home</a>
     <a data-v="dash" onclick="view('dash')">&#128202; Dashboard</a>
     <a data-v="app" onclick="view('app')">&#128269; Search</a>
     <a data-v="lib" onclick="view('lib')">&#128218; Library</a>
     <a data-v="contact" onclick="view('contact')">&#9993;&#65039; Chat with Developer</a>
+    <a data-v="launch" class="launchlnk" onclick="view('launch')">&#128640; New Launch</a>
     <a class="supp" onclick="openSupport()">&#128155; Support Bookflix</a>
     <a onclick="openLegal()">&#128274; Privacy &amp; Terms</a>
   </nav>
   <div class="sfoot"><div id="suser"></div><button id="slogout" class="ghost" onclick="logout()">&#8999; Logout</button></div>
 </aside>
+<div id="home" class="wrap hide"></div>
 <div id="dash" class="wrap hide"></div>
 <div id="lib" class="wrap hide"></div>
 <div id="contact" class="wrap hide"></div>
+<div id="launch" class="wrap hide"></div>
 
 <div id="app" class="wrap hide">
   <h2 id="hello"></h2>
@@ -275,6 +318,7 @@ body.in #ytbox{left:10px;bottom:152px}
   <div class="poster" id="shelf"></div>
 </div>
 
+<div id="bigBg" class="hide"><div id="bigBox"></div></div>
 <div id="intro" class="hide"><div id="introB">B</div><div id="introWord"></div></div>
 <div id="infoBg" class="hide" onclick="if(event.target===this)closeInfo()"><div class="box"><div class="x" onclick="closeInfo()">&#10005;</div><div id="infoBody"></div></div></div>
 <div id="reader" class="hide"><div class="rbar"><b id="rtitle"></b><span><a id="rlink" target="_blank" rel="noopener">Open in new tab</a><button class="ghost" onclick="closeReader()">&#10005; Close</button></span></div><iframe id="rframe" allowfullscreen></iframe></div>
@@ -292,9 +336,16 @@ const $ = id => document.getElementById(id);
 const MONEY = {
   amazonTag:  "bookflixbhava-21",       /* Amazon Associates India tracking ID, e.g. bookflix-21 */
   flipkartId: "PASTE_YOUR_FLIPKART_AFFID",   /* Flipkart Affiliate ID */
-  upiId:      "PASTE_YOUR_UPI_ID",           /* e.g. name@okaxis, for the Support button */
+  upiId:      "amargaur210475@oksbi",           /* e.g. name@okaxis, for the Support button */
+  launchFee: 1000,                            /* Book publish fee in INR (paid to the same UPI ID above) */
   contactEmail: "bhavanshgaur1@gmail.com"
 };
+/* Real offers shown in the gift box after a purchase. Add only coupons you really have, e.g.
+   {brand:"Amazon", title:"10% off on books", code:"BOOK10", url:"https://www.amazon.in/..."}
+   If this list is empty, the gift box shows links to each store's deals page instead. */
+const COUPONS = [];
+/* Books by verified partners. After you confirm a payment, paste the line from the request email here. */
+const PARTNER_BOOKS = [];
 const isSet = v => !!v && !/^PASTE/.test(v);
 const amazonLink = d => 'https://www.amazon.in/s?k=' + encodeURIComponent(d.title + ' ' + (d.authors[0] || '') + ' book') + (isSet(MONEY.amazonTag) ? '&tag=' + encodeURIComponent(MONEY.amazonTag) : '');
 const flipkartLink = d => 'https://www.flipkart.com/search?q=' + encodeURIComponent(d.title + ' ' + (d.authors[0] || '')) + (isSet(MONEY.flipkartId) ? '&affid=' + encodeURIComponent(MONEY.flipkartId) : '');
@@ -339,7 +390,7 @@ async function fbLoad(user){
   CACHE.users = {}; CACHE.stats = {}; CACHE.lib = {};
   pSnap.forEach(d => { const x = d.data(); CACHE.users[d.id] = {name:x.name, av:x.av}; CACHE.stats[d.id] = {secs:0, searches:x.searches || 0, books:{}, recent:[]}; });
   CACHE.users[uid] = {name:p.name, av:p.av};
-  CACHE.stats[uid] = {secs:u.secs || 0, searches:u.searches || 0, books:u.books || {}, recent:u.recent || []};
+  CACHE.stats[uid] = {secs:u.secs || 0, searches:u.searches || 0, books:u.books || {}, recent:u.recent || [], published:u.published || 0};
   CACHE.lib[uid] = {likes:u.likes || [], playlist:u.playlist || []};
 }
 async function refreshBoard(){
@@ -360,7 +411,7 @@ function scheduleFlush(){ if(flushT) return; flushT = setTimeout(() => { flushT 
 function fbFlush(){
   if(!FB_ON || !fbUid || !dirty) return;
   const st = CACHE.stats[fbUid]; if(!st) return; dirty = false;
-  fbDb.doc('users/' + fbUid).set({secs:st.secs, searches:st.searches, books:st.books, recent:st.recent}, {merge:true}).catch(() => { dirty = true; });
+  fbDb.doc('users/' + fbUid).set({secs:st.secs, searches:st.searches, books:st.books, recent:st.recent, published:st.published || 0}, {merge:true}).catch(() => { dirty = true; });
   fbDb.doc('profiles/' + fbUid).set({searches:st.searches}, {merge:true}).catch(() => {});
 }
 async function fbSubmit(email, pass, name){
@@ -486,7 +537,7 @@ const RANKS = [
   {name:'Untouchable', icon:'&#128142;', min:200},
   {name:'God', icon:'&#9889;', min:500}
 ];
-const blank = () => ({secs:0, searches:0, books:{}, recent:[]});
+const blank = () => ({secs:0, searches:0, books:{}, recent:[], published:0});
 const getStats = () => FB_ON ? CACHE.stats : JSON.parse(localStorage.getItem('bf_stats') || '{}');
 const me = () => FB_ON ? fbUid : localStorage.getItem('bf_session');
 const curStats = () => getStats()[me()] || blank();
@@ -503,6 +554,7 @@ function fmtTime(sec){
   const h = Math.floor(sec/3600), m = Math.floor(sec%3600/60), s = sec%60;
   return (h ? h + 'h ' : '') + (h || m ? m + 'm ' : '') + s + 's';
 }
+const fmtHours = sec => (sec/3600).toFixed(2);
 function toast(msg){
   const t = document.createElement('div'); t.className = 'toast'; t.innerHTML = msg;
   document.body.appendChild(t); setTimeout(() => t.remove(), 3500);
@@ -512,42 +564,34 @@ setInterval(() => {
   if(me() && document.visibilityState === 'visible'){
     upd(st => { st.secs++; }, true);
     if(!$('dash').classList.contains('hide') && $('dWatch')){
-      const st = curStats(); $('dWatch').textContent = fmtTime(st.secs); $('dPts').textContent = pts(st);
+      $('dWatch').textContent = fmtHours(curStats().secs);
     }
   }
 }, 1000);
 
+function countUp(el, to, dec){
+  const t0 = performance.now(), D = 900;
+  (function f(t){ const k = Math.min(1, (t - t0) / D), v = to * (1 - Math.pow(1 - k, 3)); if(!el.isConnected) return; el.textContent = dec ? v.toFixed(dec) : Math.round(v); if(k < 1) requestAnimationFrame(f); })(t0);
+}
 function renderDash(){
-  const email = me(), u = getUsers()[email], st = curStats();
-  const p = pts(st), r = rankOf(p), nx = RANKS[RANKS.indexOf(r) + 1];
-  const pct = nx ? Math.round((p - r.min) / (nx.min - r.min) * 100) : 100;
-  const all = getStats();
-  const board = Object.entries(getUsers()).map(([em, uu]) => ({em, av:uu.av || '\u{1F642}', name:uu.name, p:pts(all[em] || blank())})).sort((a,b) => b.p - a.p);
-  const medal = ['&#129351;','&#129352;','&#129353;'];
+  const u = getUsers()[me()], st = curStats(), r = rankOf(pts(st));
   const top = Object.entries(st.books).sort((a,b) => b[1] - a[1]).slice(0,5);
   $('dash').innerHTML = `
-    <h2>${u.av || '\u{1F642}'} ${esc(u.name)}'s Dashboard</h2>
-    <div class="rankcard">
-      <div class="rn">${r.icon} ${r.name}</div>
-      <div class="bar"><i id="dbar" style="width:0"></i></div>
-      <small>${nx ? (nx.min - p) + ' more searches to reach ' + nx.icon + ' ' + nx.name : 'You reached the top rank!'}</small>
-      <div class="ladder">${RANKS.map(x => `<span class="tag">${x.icon} ${x.name}${x.min ? ': ' + x.min + ' searches' : ''}</span>`).join('')}</div>
+    <div class="dhero">
+      <div class="dav">${u.av || '\u{1F642}'}</div>
+      <div><h2>Welcome back, ${esc(u.name)}</h2><small>Here is how you are doing on Bookflix</small></div>
     </div>
-    <div class="stats">
-      <div class="stat"><small>Watch time on Bookflix</small><div class="n" id="dWatch">${fmtTime(st.secs)}</div></div>
-      <div class="stat"><small>Total searches</small><div class="n">${st.searches}</div></div>
-      <div class="stat"><small>Points (1 search = 1 point)</small><div class="n" id="dPts">${p}</div></div>
+    <div class="dgrid">
+      <div class="dtile"><div class="ic">&#128269;</div><div class="lb2">Total searches</div><div class="big" id="dS">0</div></div>
+      <div class="dtile"><div class="ic">${r.icon}</div><div class="lb2">Your rank</div><div class="big rk">${r.name}</div></div>
+      <div class="dtile"><div class="ic">&#9201;&#65039;</div><div class="lb2">Total watch time (hours)</div><div class="big"><span id="dWatch">${fmtHours(st.secs)}</span> <small style="font-size:16px;-webkit-text-fill-color:#aaa">hrs</small></div></div>
+      <div class="dtile"><div class="ic">&#128218;</div><div class="lb2">Total books published</div><div class="big" id="dP">0</div></div>
     </div>
     <div class="two">
       <div class="panel"><h3>&#128269; Recent searches</h3>${st.recent.length ? st.recent.map(x => `<span class="chip" onclick="searchFor(this.dataset.q)" data-q="${esc(x)}">${esc(x)}</span>`).join('') : 'No searches yet.'}</div>
       <div class="panel"><h3>&#128215; Most viewed books</h3>${top.length ? top.map(b => `<div class="row">${esc(b[0])} <span class="tag">${b[1]}x</span></div>`).join('') : 'Nothing yet.'}</div>
-    </div>
-    <div class="panel"><h3>&#127942; Leaderboard</h3>
-      <table class="lb"><tr><th>#</th><th>Reader</th><th>Rank</th></tr>
-      ${board.map((b,k) => `<tr class="${b.em === email ? 'me' : ''}"><td>${medal[k] || '#' + (k+1)}</td><td>${b.av} ${esc(b.name)}${b.em === email ? ' (you)' : ''}</td><td>${rankOf(b.p).icon} ${rankOf(b.p).name}</td></tr>`).join('')}</table>
-      <small style="color:#888">1 search = 1 point. The leaderboard shows ${FB_ON ? 'all Bookflix readers.' : 'accounts on this device.'}</small>
     </div>`;
-  setTimeout(() => { const b = $('dbar'); if(b) b.style.width = pct + '%'; }, 80);
+  countUp($('dS'), st.searches, 0); countUp($('dP'), st.published || 0, 0);
 }
 /* ---------- Reviews (comments shown to every account on this device) ---------- */
 const getRev = () => FB_ON ? CACHE.rev : JSON.parse(localStorage.getItem('bf_reviews') || '{}');
@@ -635,6 +679,7 @@ async function findIA(d){
 async function readBook(){
   const d = window._cur; if(!d) return;
   const btn = $('readBtn');
+  if(d.src === 'partner'){ if(d.readUrl) return window.open(d.readUrl, '_blank', 'noopener'); return toast('The author has not shared a reading link for this book yet.'); }
   /* Google Books result with full view */
   if(d.src === 'gb'){
     if(d.view === 'ALL_PAGES' && d.embeddable)
@@ -796,14 +841,163 @@ function sendMail(gmail){
   else location.href = 'mailto:' + DEV + '?subject=' + enc(sub) + '&body=' + enc(body);
 }
 
+/* ---------- New Launch: publish your book (paid) ---------- */
+const upiLink = (app) => {
+  const q = 'pa=' + encodeURIComponent(MONEY.upiId) + '&pn=Bookflix&am=' + MONEY.launchFee + '.00&cu=INR&tn=' + encodeURIComponent('Bookflix book publish fee');
+  const base = {gpay:'tez://upi/pay?', phonepe:'phonepe://pay?', paytm:'paytmmp://pay?'}[app] || 'upi://pay?';
+  return base + q;
+};
+function renderLaunch(){
+  if(!isSet(MONEY.upiId)){ $('launch').innerHTML = '<h2>&#128640; New Launch</h2><div class="panel"><p>Book publishing is not open yet. Please check back soon.</p></div>'; return; }
+  $('launch').innerHTML = `
+    <h2>&#128640; New Launch: publish your book</h2>
+    <div class="panel">
+      <p>Are you an author? Get your book featured on Bookflix. Publishing fee: <b>&#8377;${MONEY.launchFee}</b> (one time).</p>
+      <h3>1. Book details</h3>
+      <input id="lTitle" type="text" placeholder="Book title">
+      <input id="lAuthor" type="text" placeholder="Author name">
+      <input id="lGenre" type="text" placeholder="Genre (e.g. Fiction, Self-help)">
+      <textarea id="lSum" rows="4" placeholder="Short summary of your book"></textarea>
+      <input id="lLink" type="text" placeholder="Link to your book file or sample (Google Drive, etc.)">
+      <input id="lCover" type="text" placeholder="Link to your book cover image (optional)">
+      <input id="lPhone" type="text" placeholder="Your phone / WhatsApp number">
+      <textarea id="lRemark" rows="2" placeholder="Remark / anything you want to tell us (optional)"></textarea>
+      <h3>2. Pay &#8377;${MONEY.launchFee}</h3>
+      <select id="lPay">
+        <option value="gpay">Google Pay</option>
+        <option value="phonepe">PhonePe</option>
+        <option value="paytm">Paytm</option>
+        <option value="any">Any UPI app</option>
+      </select>
+      <button onclick="payLaunch()">Pay &#8377;${MONEY.launchFee} with UPI</button>
+      <p><small style="color:#888">This opens your UPI app with the amount filled in. If it does not open or your app blocks the payment, copy the UPI ID <b>${esc(MONEY.upiId)}</b> <span class="link" onclick="copyUpi()">(copy)</span> and pay &#8377;${MONEY.launchFee} manually. Use a phone with a UPI app installed.</small></p>
+      <h3>3. Confirm your payment</h3>
+      <input id="lUtr" type="text" inputmode="numeric" maxlength="12" placeholder="12-digit UPI transaction ID (UTR)">
+      <div class="msg" id="lMsg"></div>
+      <button onclick="sendLaunch(false)">Send request by email app</button>
+      <button class="ghost" onclick="sendLaunch(true)">Send via Gmail</button>
+      <p><small style="color:#888">Payments are not verified automatically. The developer checks the transaction ID against the received payment, then contacts you. Keep your payment screenshot until you hear back.</small></p>
+    </div>${launchList().length ? `<div class="panel"><h3>Your submissions</h3>${launchList().map(x => `<div class="row" style="cursor:pointer" onclick="showReceipt('${x.id}')">&#128214; <b>${esc(x.title)}</b> <small style="color:#888">${new Date(x.t).toLocaleDateString()}</small> <span class="tag">View details</span></div>`).join('')}</div>` : ''}`;
+}
+function launchData(needPay){
+  const g = id => $(id).value.trim(), m = $('lMsg'); m.style.color = '';
+  const d = {title:g('lTitle'), author:g('lAuthor'), genre:g('lGenre'), sum:g('lSum'), link:g('lLink'), cover:g('lCover'), phone:g('lPhone'), remark:g('lRemark'), utr:g('lUtr')};
+  if(!d.title || !d.author){ m.textContent = 'Please enter the book title and author name.'; return null; }
+  if(needPay && !/^\d{12}$/.test(d.utr)){ m.textContent = 'Enter the 12-digit UPI transaction ID shown in your payment receipt.'; return null; }
+  m.textContent = ''; return d;
+}
+function payLaunch(){
+  if(!launchData(false)) return;
+  location.href = upiLink($('lPay').value);
+}
+function sendLaunch(gmail){
+  const d = launchData(true); if(!d) return;
+  const u = getUsers()[me()] || {name:''}, enc = encodeURIComponent;
+  const sub = 'Bookflix New Launch: ' + d.title;
+  const body = 'BOOK PUBLISH REQUEST\n\nTitle: ' + d.title + '\nAuthor: ' + d.author + '\nGenre: ' + d.genre + '\nSummary: ' + d.sum + '\nBook link: ' + d.link + '\nCover link: ' + d.cover + '\nPhone: ' + d.phone + '\nRemark: ' + d.remark +
+    '\n\nFee: Rs. ' + MONEY.launchFee + '\nUPI transaction ID (UTR): ' + d.utr + '\n\nAFTER VERIFYING PAYMENT, paste this line into PARTNER_BOOKS in index.html:\n' + JSON.stringify({title:d.title, author:d.author, genre:d.genre, summary:d.sum, cover:d.cover, readUrl:d.link}) + ',' + '\n\n--\nFrom: ' + u.name + ' (' + myEmail() + ')';
+  if(gmail) window.open('https://mail.google.com/mail/?view=cm&to=' + DEV + '&su=' + enc(sub) + '&body=' + enc(body), '_blank');
+  else location.href = 'mailto:' + DEV + '?subject=' + enc(sub) + '&body=' + enc(body);
+  const rec = {id:'BF' + Date.now().toString(36).toUpperCase(), t:Date.now(), ...d, fee:MONEY.launchFee, uname:u.name || '', uemail:myEmail() || ''};
+  const all = launchList(); all.unshift(rec); localStorage.setItem('bf_launch_' + me(), JSON.stringify(all.slice(0, 50)));
+  upd(st => { st.published = (st.published || 0) + 1; });
+  bigOverlay(`<h1>You are now a Partner of Bookflix!</h1><span class="partner">&#127775; BOOKFLIX PARTNER</span>
+    <p>Thank you, ${esc(u.name || 'author')}! Your book <b>${esc(d.title)}</b> is submitted. We will verify your payment and contact you shortly.</p>
+    <div class="btns"><button onclick="closeBig();showReceipt('${rec.id}')">View my details</button><button class="ghost" onclick="closeBig();view('home')">Go to home</button></div>`);
+}
+const launchList = () => { try{ return JSON.parse(localStorage.getItem('bf_launch_' + me()) || '[]'); }catch(e){ return []; } };
+function showReceipt(id){
+  const r = launchList().find(x => x.id === id); if(!r) return renderLaunch();
+  view('launch');
+  const row = (k, v) => `<tr><td style="color:#aaa;width:38%;vertical-align:top">${k}</td><td>${v ? esc(v).replace(/\n/g,'<br>') : '<span style="color:#666">-</span>'}</td></tr>`;
+  $('launch').innerHTML = `
+    <h2>&#128640; Your book submission</h2>
+    <div class="panel">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:10px"><span class="partner" style="display:inline-block;padding:6px 16px;border-radius:20px;background:linear-gradient(90deg,#e50914,#ff7a59);font-weight:800;animation:none;opacity:1">&#127775; BOOKFLIX PARTNER</span>
+      <span class="tag">Status: Payment verification pending</span></div>
+      <h3>Book details</h3>
+      <table class="lb">${row('Book name', r.title)}${row('Author', r.author)}${row('Genre', r.genre)}${row('Summary', r.sum)}${row('Book link', r.link)}${row('Cover link', r.cover)}${row('Remark', r.remark)}</table>
+      <h3 style="margin-top:20px">Your details</h3>
+      <table class="lb">${row('Name', r.uname)}${row('Email', r.uemail)}${row('Phone / WhatsApp', r.phone)}</table>
+      <h3 style="margin-top:20px">Payment</h3>
+      <table class="lb">${row('Publishing fee', '₹' + r.fee)}${row('UPI transaction ID (UTR)', r.utr)}${row('Paid to', MONEY.upiId)}${row('Submitted on', new Date(r.t).toLocaleString())}${row('Reference no.', r.id)}</table>
+      <div style="margin-top:18px"><button onclick="renderLaunch()">Back to New Launch</button></div>
+      <p><small style="color:#888">Payments are verified manually by the developer. Keep your payment screenshot until you hear back.</small></p>
+    </div>`;
+}
+
+/* ---------- Home ---------- */
+function renderHome(){
+  const u = getUsers()[me()] || {name:''};
+  $('home').innerHTML = `
+    <div class="hhero"><h1>Unlimited books. One search.</h1>
+      <p>Welcome, ${esc(u.name)}! Find any book's author, birth &amp; death dates, publish year, genre, summary and cover.</p>
+      <div class="hcta"><button onclick="view('app')">&#128269; Search a book</button>${isSet(MONEY.upiId) ? '<button class="ghost" onclick="view(\'launch\')">&#128640; Publish your book</button>' : ''}</div></div>
+    ${isSet(MONEY.upiId) ? `<div class="hauthor"><h3>&#128640; Are you an author?</h3><div style="color:#ccc">Get your book featured on Bookflix as a Partner. Open <b>New Launch</b> to get started.</div></div>` : ''}
+    <h3 class="shelfh">&#128218; Popular books - tap a cover to search it</h3>
+    <div class="poster" id="hshelf"></div>`;
+  buildPoster('hshelf', 'hcv', true);
+}
+
+/* ---------- Big celebration overlay (tick + message) ---------- */
+function bigOverlay(html){
+  const cf = Array.from({length:40}, () => `<span class="cf" style="left:${Math.random()*100}%;background:hsl(${Math.floor(Math.random()*360)} 80% 60%);animation-duration:${(1.8 + Math.random()*1.8).toFixed(2)}s;animation-delay:${(Math.random()*.8).toFixed(2)}s"></span>`).join('');
+  $('bigBox').innerHTML = cf + `<svg class="chk" viewBox="0 0 52 52"><circle class="cc" cx="26" cy="26" r="24"/><path class="cp" d="M14 27l8 8 16-16"/></svg>` + html;
+  $('bigBg').classList.remove('hide');
+}
+function closeBig(){ $('bigBg').classList.add('hide'); }
+
+/* ---------- Amazon: welcome back + order confirmation ---------- */
+let amzT = 0, amzTitle = '';
+function amzClick(){ amzT = Date.now(); amzTitle = (window._cur && window._cur.title) || ''; }
+function askOrder(){
+  $('bigBox').innerHTML = `<h1 style="animation:none;opacity:1">Welcome back!</h1><p style="animation:none;opacity:1">Did you place your order${amzTitle ? ' for <b>' + esc(amzTitle) + '</b>' : ''} on Amazon?</p>
+    <div class="btns" style="animation:none;opacity:1"><button onclick="orderPlaced()">&#9989; Yes, I ordered</button><button class="ghost" onclick="closeBig()">Not yet</button></div>`;
+  $('bigBg').classList.remove('hide');
+}
+function orderPlaced(){
+  bigOverlay(`<h1>ORDER IS PLACED!</h1><p>Thank you for shopping through Bookflix. Happy reading!</p><div class="btns"><button onclick="openGift()">&#127873; Open your gift</button><button class="ghost" onclick="closeBig()">Later</button></div>`);
+}
+const DEALS = [
+  {brand:'Amazon', title:'Coupons & deals on Amazon', url:() => 'https://www.amazon.in/gp/goldbox' + (isSet(MONEY.amazonTag) ? '?tag=' + encodeURIComponent(MONEY.amazonTag) : '')},
+  {brand:'Flipkart', title:'Deals on Flipkart', url:() => 'https://www.flipkart.com/'},
+  {brand:'Myntra', title:'Deals on Myntra', url:() => 'https://www.myntra.com/'},
+  {brand:'Meesho', title:'Deals on Meesho', url:() => 'https://www.meesho.com/'}
+];
+function openGift(){
+  $('bigBox').innerHTML = `<div onclick="revealGift()" style="cursor:pointer"><div class="gift" id="giftIcon">&#127873;</div>
+    <h1 style="animation:none;opacity:1">You won a gift!</h1><div class="tapmsg">Tap to open</div></div>`;
+  $('bigBg').classList.remove('hide');
+}
+function revealGift(){
+  const g = $('giftIcon'); if(!g || g.classList.contains('pop')) return;
+  g.classList.add('pop');
+  setTimeout(() => {
+    let offers;
+    if(COUPONS.length){
+      const c = COUPONS[Math.floor(Math.random() * COUPONS.length)];
+      offers = `<div class="offer"><b class="brand">${esc(c.brand)}</b><div>${esc(c.title)}</div>${c.code ? `<div><span class="code">${esc(c.code)}</span><button onclick="navigator.clipboard.writeText('${esc(c.code)}');toast('Code copied')">Copy</button></div>` : ''}${c.url ? `<a class="bbtn amz" style="display:inline-block;margin-top:8px" target="_blank" rel="noopener" href="${esc(c.url)}">Open offer</a>` : ''}</div>`;
+    } else {
+      offers = `<div class="offer"><b class="brand">Amazon</b><div>Check today's coupons &amp; deals before your next purchase.</div><a class="bbtn amz" style="display:inline-block;margin-top:8px" target="_blank" rel="sponsored noopener" href="${esc(DEALS[0].url())}">Open Amazon deals</a></div>
+      <div style="color:#aaa;font-size:13px;margin-bottom:6px">More stores:</div>${DEALS.slice(1).map(x => `<a class="chip" style="text-decoration:none;color:#eee" target="_blank" rel="noopener" href="${esc(x.url())}">${esc(x.brand)}</a>`).join('')}`;
+    }
+    bigOverlay(`<h1>&#127881; Your next-purchase offer</h1>${offers}<div class="btns" style="margin-top:14px"><button onclick="closeBig()">Done</button></div>`);
+  }, 600);
+}
+document.addEventListener('visibilitychange', () => {
+  if(document.visibilityState === 'visible' && amzT && me() && Date.now() - amzT > 15000){ amzT = 0; askOrder(); }
+});
+
 /* ---------- Navigation ---------- */
 function view(v){
-  ['app','dash','lib','contact'].forEach(x => $(x).classList.toggle('hide', x !== v));
+  ['home','app','dash','lib','contact','launch'].forEach(x => $(x).classList.toggle('hide', x !== v));
   document.querySelectorAll('#side a').forEach(a => a.classList.toggle('act', a.dataset.v === v));
   $('side').classList.remove('open');
   if(v === 'dash'){ renderDash(); if(FB_ON) refreshBoard().then(() => { if(!$('dash').classList.contains('hide')) renderDash(); }); }
   if(v === 'lib') renderLib();
   if(v === 'contact') renderContact();
+  if(v === 'launch') renderLaunch();
+  if(v === 'home') renderHome();
 }
 function searchFor(q){ view('app'); $('q').value = q; search(); }
 
@@ -836,12 +1030,12 @@ function showApp(){
   $('nav').innerHTML = `<span class="pill"><span class="ava">${av}</span><span class="pn">${esc(u.name)}</span></span>`;
   $('suser').innerHTML = `<span class="ava big">${av}</span><div><b>${esc(u.name)}</b><br><small>${esc(myEmail())}</small></div>`;
   if(!$('shelf').children.length) buildPoster('shelf', 'scv', true);
-  view('app');
+  view('home');
 }
 function logout(){
   if(FB_ON && fbAuth) fbAuth.signOut();
   localStorage.removeItem('bf_session'); document.body.classList.remove('in');
-  ['app','dash','lib','contact','side'].forEach(x => $(x).classList.add('hide'));
+  ['home','app','dash','lib','contact','launch','side'].forEach(x => $(x).classList.add('hide')); closeBig();
   setMode('login'); if(!$('poster').children.length) loadShowcase(); showLanding();
 }
 
@@ -907,6 +1101,7 @@ async function search(){
   if(!docs.length){
     try{ docs = await searchGB(q); }catch(e){ err += ' | Google Books: ' + e.message; }
   }
+  docs = partnerMatch(q).concat(docs);
   if(!docs.length){
     $('status').innerHTML = err
       ? 'Could not load data (' + esc(err) + '). Check your internet and open this file in Chrome/Edge by double-clicking it (not inside a preview window).'
@@ -919,6 +1114,11 @@ async function search(){
   pick(0);
 }
 
+function partnerMatch(q){
+  const k = q.toLowerCase().trim(); if(k.length < 2) return [];
+  return PARTNER_BOOKS.filter(b => (b.title + ' ' + b.author).toLowerCase().includes(k)).map(b => ({src:'partner', key:'partner:' + b.title, title:b.title, authors:[b.author], year:b.year || '',
+    cover:b.cover || '', genres:String(b.genre || '').split(',').map(x => x.trim()).filter(Boolean), summary:b.summary || '', readUrl:b.readUrl || ''}));
+}
 async function pick(i){
   const d = window._docs[i];
   upd(st => { st.books[d.title] = (st.books[d.title] || 0) + 1; });
@@ -936,7 +1136,7 @@ async function pick(i){
         birth = a.birth_date || ''; death = a.death_date || ''; }
     }catch(e){}
   }
-  if(!birth && d.authors[0]){ const w = await wikiDates(d.authors[0]); if(w){ birth = w.birth; death = w.death; } }
+  if(!birth && d.authors[0] && d.src !== 'partner'){ const w = await wikiDates(d.authors[0]); if(w){ birth = w.birth; death = w.death; } }
   const slug = String(d.title).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'');
   summary = clean(summary).split('\n\n')[0] || 'Summary not available for this book.';
 
@@ -944,18 +1144,18 @@ async function pick(i){
   <div class="card">
     <img src="${esc(d.cover)}" alt="Book cover" onerror="this.alt='Cover not available'">
     <div class="info">
-      <h1>${esc(d.title)}</h1>
-      <div class="row"><b>Author:</b> ${esc(d.authors.join(', ') || 'Unknown')}</div>
+      <h1>${esc(d.title)}</h1>${d.src === 'partner' ? '<div class="row"><span class="tag" style="background:linear-gradient(90deg,#e50914,#ff7a59)">&#127775; Bookflix Partner</span></div>' : ''}
+      <div class="row"><b>Author:</b> ${esc(d.authors.join(', ') || 'Unknown')}</div>${d.src === 'partner' ? '' : `
       <div class="row"><b>Author born:</b> ${esc(birth || 'Not available')}</div>
-      <div class="row"><b>Author died:</b> ${esc(death || (birth ? 'Not available / possibly still alive' : 'Not available'))}</div>
+      <div class="row"><b>Author died:</b> ${esc(death || (birth ? 'Not available / possibly still alive' : 'Not available'))}</div>`}
       <div class="row"><b>First published:</b> ${esc(d.year || 'Not available')}</div>
       <div class="row"><b>Genre / Themes:</b><br>${genres.length ? genres.map(s=>`<span class="tag">${esc(s)}</span>`).join('') : 'Not available'}</div>
       <div class="row"><b>Summary:</b><br><span id="sumtxt"></span><span class="caret"></span></div>
       <div class="acts"><button id="readBtn" onclick="readBook()">&#128214; Read</button> <button id="likeBtn" class="heart" onclick="toggleLike()">&#9825; Like</button> <button class="ghost" onclick="$('plBox').classList.toggle('hide')">&#43; Add to playlist</button> <button class="ghost" onclick="$('cmBox').classList.toggle('hide')">&#128172; Comment</button></div>
       <div id="cmBox" class="plbox hide"><input id="cmText" type="text" maxlength="500" placeholder="Write your review of this book..."><button onclick="postReview()">Post</button></div>
       <div id="plBox" class="plbox hide"><input id="plNote" type="text" maxlength="200" placeholder="Add a comment (why this book?)"><button onclick="savePlaylist()">Save</button></div>
-      <div class="buy"><span>&#128722; Buy this book:</span> <a class="bbtn amz" target="_blank" rel="sponsored noopener" href="${amazonLink(d)}">Amazon</a> <a class="bbtn fk" target="_blank" rel="sponsored noopener" href="${flipkartLink(d)}">Flipkart</a>${(isSet(MONEY.amazonTag) || isSet(MONEY.flipkartId)) ? '<div class="aff">'+(isSet(MONEY.amazonTag)?'As an Amazon Associate I earn from qualifying purchases. ':'')+'Affiliate links: Bookflix may earn a small commission from qualifying purchases at no extra cost to you.</div>' : ''}</div>
-      <div class="src">Data source: ${d.src==='ol' ? 'Open Library (+ Wikipedia)' : 'Google Books (+ Wikipedia)'}</div>
+      <div class="buy"><span>&#128722; Buy this book:</span> <a class="bbtn amz" target="_blank" rel="sponsored noopener" onclick="amzClick()" href="${amazonLink(d)}">Amazon</a>${(isSet(MONEY.amazonTag) || isSet(MONEY.flipkartId)) ? '<div class="aff">'+(isSet(MONEY.amazonTag)?'As an Amazon Associate I earn from qualifying purchases. ':'')+'Affiliate links: Bookflix may earn a small commission from qualifying purchases at no extra cost to you.</div>' : ''}</div>
+      <div class="src">Data source: ${d.src==='partner' ? 'Bookflix Partner (published by the author)' : d.src==='ol' ? 'Open Library (+ Wikipedia)' : 'Google Books (+ Wikipedia)'}</div>
     </div>
   </div>
   <div class="clip">
@@ -1152,9 +1352,9 @@ function runIntro(){
   setTimeout(end, 5200);
 }
 if(FB_ON) $('acctNote').textContent = 'Your account is stored securely in the cloud (Firebase). Please use a password you do not use anywhere else.';
-if(!isSet(MONEY.upiId)) document.querySelectorAll('.supp').forEach(e => e.remove());
+if(!isSet(MONEY.upiId)) document.querySelectorAll('.supp,.launchlnk').forEach(e => e.remove());
 avBuild();
-{ const t = 'Made by Developer Bhavansh Gaur   \u2726   '.repeat(14); $('fm').textContent = t + t; }
+{ const t = 'Made by Developer Bhavansh Gaur   \u2726   Inspired by Preeti Sharma   \u2726   '.repeat(14); $('fm').textContent = t + t; }
 setMode('login');
 if(FB_ON || !localStorage.getItem('bf_session')) loadShowcase();
 runIntro();
